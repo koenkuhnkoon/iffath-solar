@@ -1,0 +1,1387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iffath Poultry Farm — Solar Investment Analysis</title>
+  <style>
+    /* ── RESET & BASE ─────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+    body {
+      background: #FFFDE7;
+      color: #212121;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      line-height: 1.6;
+    }
+    a { color: #1B5E20; }
+    a:hover { color: #F9A825; }
+
+    /* ── TRUCK ART BORDERS ────────────────────────────────── */
+    .truck-border {
+      height: 14px;
+      background-image:
+        linear-gradient(45deg, #F9A825 25%, transparent 25%),
+        linear-gradient(-45deg, #F9A825 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #F9A825 75%),
+        linear-gradient(-45deg, transparent 75%, #F9A825 75%);
+      background-size: 14px 14px;
+      background-position: 0 0, 0 7px, 7px -7px, -7px 0px;
+      background-color: #1B5E20;
+    }
+    .truck-border-thin {
+      height: 8px;
+      background-image:
+        linear-gradient(45deg, #F9A825 25%, transparent 25%),
+        linear-gradient(-45deg, #F9A825 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #F9A825 75%),
+        linear-gradient(-45deg, transparent 75%, #F9A825 75%);
+      background-size: 8px 8px;
+      background-position: 0 0, 0 4px, 4px -4px, -4px 0px;
+      background-color: #E64A19;
+    }
+
+    /* ── HEADER ───────────────────────────────────────────── */
+    header {
+      background: linear-gradient(135deg, #1B5E20 0%, #2E7D32 50%, #1B5E20 100%);
+      color: white;
+      padding: 0;
+    }
+    .header-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 28px 24px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .header-mascot {
+      font-size: 4.5rem;
+      line-height: 1;
+      flex-shrink: 0;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+    }
+    .header-text { flex: 1; }
+    .header-text h1 {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 2rem;
+      color: #F9A825;
+      letter-spacing: 0.03em;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+      line-height: 1.2;
+    }
+    .header-text .subtitle {
+      font-size: 1.1rem;
+      color: #E8F5E9;
+      margin-top: 4px;
+      font-weight: 500;
+    }
+    .header-text .meta {
+      font-size: 0.82rem;
+      color: #A5D6A7;
+      margin-top: 6px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .header-sun {
+      font-size: 3.5rem;
+      flex-shrink: 0;
+      animation: pulse-sun 3s ease-in-out infinite;
+    }
+    @keyframes pulse-sun {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.08); opacity: 0.85; }
+    }
+
+    /* ── MAIN LAYOUT ──────────────────────────────────────── */
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 24px 16px 40px;
+    }
+
+    /* ── SECTION DIVIDER ──────────────────────────────────── */
+    .divider {
+      display: flex;
+      align-items: center;
+      margin: 28px 0 20px;
+      gap: 12px;
+    }
+    .divider::before, .divider::after {
+      content: '';
+      flex: 1;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #F9A825, transparent);
+    }
+    .divider-diamond {
+      width: 10px;
+      height: 10px;
+      background: #F9A825;
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+
+    /* ── CARDS ────────────────────────────────────────────── */
+    .card {
+      background: white;
+      border-radius: 8px;
+      padding: 24px 28px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      border-left: 5px solid #1B5E20;
+    }
+    .card-warning {
+      border-left-color: #B71C1C;
+      background: #FFF8F8;
+    }
+    .card-questions {
+      border-left-color: #E64A19;
+      background: #FFF8F2;
+    }
+    .card-calculator {
+      border-left-color: #F9A825;
+      background: #FFFEF0;
+    }
+    .card-recommendation {
+      border-left-color: #1B5E20;
+      background: #F1F8E9;
+    }
+    .card h2 {
+      font-family: Georgia, serif;
+      font-size: 1.25rem;
+      color: #1B5E20;
+      margin-bottom: 14px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #E8F5E9;
+    }
+    .card-warning h2 { color: #B71C1C; border-bottom-color: #FFCDD2; }
+    .card-questions h2 { color: #E64A19; border-bottom-color: #FFE0CC; }
+    .card-calculator h2 { color: #5D4037; border-bottom-color: #FFF176; }
+    .card-recommendation h2 { color: #1B5E20; }
+    .card p { margin-bottom: 10px; color: #333; }
+    .card p:last-child { margin-bottom: 0; }
+
+    /* ── SOURCE BADGES ────────────────────────────────────── */
+    .src {
+      display: inline-block;
+      font-size: 0.62em;
+      padding: 1px 5px;
+      border-radius: 3px;
+      background: #E8F5E9;
+      color: #1B5E20;
+      font-family: 'Courier New', monospace;
+      vertical-align: super;
+      font-weight: 600;
+      white-space: nowrap;
+      margin-left: 2px;
+    }
+    .src-est { background: #FFF9C4; color: #5D4037; }
+    .src-warn { background: #FFEBEE; color: #B71C1C; }
+    .src-bill { background: #E3F2FD; color: #0D47A1; }
+
+    /* ── TABLES ───────────────────────────────────────────── */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0;
+      font-size: 0.9rem;
+    }
+    thead tr { background: #1B5E20; color: white; }
+    thead th {
+      padding: 9px 12px;
+      text-align: left;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+    tbody tr:nth-child(even) { background: #F1F8E9; }
+    tbody tr:hover { background: #E8F5E9; }
+    td { padding: 8px 12px; border-bottom: 1px solid #E0E0E0; }
+    td.num { text-align: right; font-variant-numeric: tabular-nums; font-family: 'Courier New', monospace; }
+    tfoot tr { background: #1B5E20; color: white; font-weight: 700; }
+    tfoot td { padding: 9px 12px; }
+    tfoot td.num { font-family: 'Courier New', monospace; }
+
+    /* Options comparison table — different colouring */
+    .options-table thead tr { background: #263238; }
+    .options-table .opt-col-1 { background: #E8F5E9; }
+    .options-table .opt-col-2 { background: #FFF3E0; }
+    .options-table .opt-col-3 { background: #FCE4EC; }
+    .options-table tfoot tr { background: #263238; }
+
+    /* ── HIGHLIGHT BOXES ──────────────────────────────────── */
+    .highlight-box {
+      background: #F1F8E9;
+      border: 1px solid #A5D6A7;
+      border-radius: 6px;
+      padding: 14px 18px;
+      margin: 14px 0;
+    }
+    .highlight-box.warning {
+      background: #FFEBEE;
+      border-color: #EF9A9A;
+    }
+    .highlight-box.gold {
+      background: #FFF8E1;
+      border-color: #FFE082;
+    }
+    .highlight-box strong { color: #1B5E20; }
+    .highlight-box.warning strong { color: #B71C1C; }
+    .highlight-box.gold strong { color: #5D4037; }
+    .highlight-box p { margin-bottom: 6px; }
+
+    /* ── CALCULATOR ───────────────────────────────────────── */
+    .calc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 18px 0;
+    }
+    @media (max-width: 600px) { .calc-grid { grid-template-columns: 1fr; } }
+    .calc-field label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #5D4037;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .calc-field label .src { vertical-align: middle; font-size: 0.65em; }
+    .calc-field input[type="range"] {
+      width: 100%;
+      accent-color: #F9A825;
+      cursor: pointer;
+    }
+    .calc-field .range-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .calc-field .range-val {
+      min-width: 80px;
+      text-align: right;
+      font-family: 'Courier New', monospace;
+      font-weight: 700;
+      color: #1B5E20;
+      font-size: 0.95rem;
+    }
+    .calc-results {
+      background: #1B5E20;
+      border-radius: 8px;
+      padding: 20px 24px;
+      color: white;
+      margin-top: 18px;
+    }
+    .calc-results h3 {
+      font-family: Georgia, serif;
+      font-size: 1.05rem;
+      color: #F9A825;
+      margin-bottom: 14px;
+    }
+    .results-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 600px) { .results-grid { grid-template-columns: 1fr; } }
+    .result-card {
+      background: rgba(255,255,255,0.12);
+      border-radius: 6px;
+      padding: 14px 16px;
+      text-align: center;
+      border-top: 3px solid;
+    }
+    .result-card.opt1 { border-top-color: #A5D6A7; }
+    .result-card.opt2 { border-top-color: #FFCC80; }
+    .result-card.opt3 { border-top-color: #F48FB1; }
+    .result-card .opt-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      opacity: 0.8;
+      margin-bottom: 10px;
+    }
+    .result-card .metric { margin-bottom: 8px; }
+    .result-card .metric-label {
+      font-size: 0.68rem;
+      opacity: 0.7;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .result-card .metric-val {
+      font-family: Georgia, serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #F9A825;
+    }
+    .result-card .metric-val.pos { color: #A5D6A7; }
+    .result-card .metric-val.neg { color: #F48FB1; }
+    .owner-net-box {
+      margin-top: 16px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 6px;
+      padding: 14px 18px;
+      border-left: 4px solid #F9A825;
+    }
+    .owner-net-box .label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      opacity: 0.8;
+      margin-bottom: 6px;
+    }
+    .owner-net-val {
+      font-family: Georgia, serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    /* ── CHECKLIST ────────────────────────────────────────── */
+    .checklist { list-style: none; padding: 0; }
+    .checklist li {
+      padding: 10px 0;
+      border-bottom: 1px solid #FFE0CC;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .checklist li:last-child { border-bottom: none; }
+    .checklist .q-num {
+      background: #E64A19;
+      color: white;
+      border-radius: 50%;
+      width: 26px;
+      height: 26px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.78rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .checklist .q-body strong { color: #B71C1C; }
+    .checklist .q-body p { margin: 3px 0 0; font-size: 0.87rem; color: #666; }
+
+    /* ── SENSITIVITY TABLE ────────────────────────────────── */
+    .sensitivity-wrapper { overflow-x: auto; }
+    #sensitivity-table thead tr { background: #37474F; }
+    #sensitivity-table tfoot tr { background: #37474F; }
+
+    /* ── EXPERT SECTION ───────────────────────────────────── */
+    .expert-block {
+      border-left: 3px solid #F9A825;
+      padding: 10px 16px;
+      margin: 12px 0;
+      background: #FAFAFA;
+      border-radius: 0 4px 4px 0;
+    }
+    .expert-block .expert-tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #1B5E20;
+      letter-spacing: 0.08em;
+      margin-bottom: 4px;
+    }
+
+    /* ── RECOMMENDATION ───────────────────────────────────── */
+    .verdict-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 14px 0; }
+    @media (max-width: 600px) { .verdict-grid { grid-template-columns: 1fr; } }
+    .verdict-card {
+      border-radius: 6px;
+      padding: 14px;
+      text-align: center;
+      border: 2px solid;
+    }
+    .verdict-card.yes { border-color: #2E7D32; background: #E8F5E9; }
+    .verdict-card.caution { border-color: #E65100; background: #FFF3E0; }
+    .verdict-card.no { border-color: #B71C1C; background: #FFEBEE; }
+    .verdict-card .badge {
+      font-size: 1.6rem;
+      margin-bottom: 6px;
+    }
+    .verdict-card .v-title { font-weight: 700; font-size: 0.85rem; margin-bottom: 4px; }
+    .verdict-card .v-sub { font-size: 0.78rem; color: #555; }
+
+    /* ── SOURCES ──────────────────────────────────────────── */
+    details {
+      background: white;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      border: 1px solid #E0E0E0;
+    }
+    summary {
+      padding: 16px 20px;
+      cursor: pointer;
+      font-weight: 600;
+      color: #1B5E20;
+      font-family: Georgia, serif;
+      font-size: 1rem;
+      user-select: none;
+    }
+    summary:hover { background: #F1F8E9; border-radius: 8px; }
+    details[open] summary { border-bottom: 1px solid #E0E0E0; border-radius: 8px 8px 0 0; }
+    .sources-inner { padding: 16px 20px; }
+    .source-item {
+      padding: 8px 0;
+      border-bottom: 1px solid #F0F0F0;
+      font-size: 0.85rem;
+    }
+    .source-item:last-child { border-bottom: none; }
+    .source-item .cred {
+      display: inline-block;
+      color: #F9A825;
+      font-size: 0.8em;
+      margin-left: 6px;
+    }
+    .source-item .cred-note {
+      color: #666;
+      font-size: 0.78rem;
+      margin-top: 2px;
+    }
+
+    /* ── FOOTER ───────────────────────────────────────────── */
+    footer {
+      text-align: center;
+      font-size: 0.78rem;
+      color: #888;
+      padding: 20px;
+      border-top: 1px solid #E0E0E0;
+      background: white;
+    }
+
+    /* ── UTILITY ──────────────────────────────────────────── */
+    .text-muted { color: #777; font-size: 0.85rem; }
+    .text-warning { color: #B71C1C; font-weight: 600; }
+    .text-success { color: #1B5E20; font-weight: 600; }
+    .big-num {
+      font-family: Georgia, serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #1B5E20;
+    }
+    .big-num.warn { color: #B71C1C; }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    @media (max-width: 600px) { .two-col { grid-template-columns: 1fr; } }
+    .stat-box {
+      background: #F1F8E9;
+      border-radius: 6px;
+      padding: 12px 16px;
+      border: 1px solid #C8E6C9;
+    }
+    .stat-box .stat-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #5D4037;
+      margin-bottom: 4px;
+    }
+    .stat-box .stat-val {
+      font-family: Georgia, serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #1B5E20;
+    }
+    .stat-box .stat-sub { font-size: 0.78rem; color: #666; margin-top: 2px; }
+    .stat-box.orange { background: #FFF3E0; border-color: #FFCC80; }
+    .stat-box.orange .stat-val { color: #E64A19; }
+    .stat-box.red { background: #FFEBEE; border-color: #FFCDD2; }
+    .stat-box.red .stat-val { color: #B71C1C; }
+
+    /* ── PRINT ────────────────────────────────────────────── */
+    @media print {
+      body { background: white; font-size: 11pt; }
+      .card-calculator, .no-print { display: none !important; }
+      .truck-border, .truck-border-thin { height: 4px; }
+      main { padding: 0; }
+      .card { box-shadow: none; border: 1px solid #ddd; page-break-inside: avoid; }
+      header { background: #1B5E20 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+
+    /* ── RESPONSIVE ───────────────────────────────────────── */
+    @media (max-width: 600px) {
+      .header-inner { flex-wrap: wrap; justify-content: center; text-align: center; padding: 20px 16px; }
+      .header-text h1 { font-size: 1.5rem; }
+      .card { padding: 18px 16px; }
+      .header-mascot { font-size: 3rem; }
+      .header-sun { font-size: 2.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ╔════════════════════════════════════════════════════╗ -->
+<!-- ║  HEADER                                            ║ -->
+<!-- ╚════════════════════════════════════════════════════╝ -->
+<div class="truck-border"></div>
+<header>
+  <div class="header-inner">
+    <div class="header-mascot" title="Iffath Poultry Farm">🐓</div>
+    <div class="header-text">
+      <h1>Iffath Poultry Farm</h1>
+      <p class="subtitle">Solar Investment Analysis — Should We Switch?</p>
+      <p class="meta">Faisalabad, Punjab &nbsp;·&nbsp; April 2026 &nbsp;·&nbsp; 100 kW System</p>
+    </div>
+    <div class="header-sun" title="Solar energy">☀️</div>
+  </div>
+</header>
+<div class="truck-border"></div>
+
+<main>
+
+<!-- ── HOW TO USE ────────────────────────────────────────── -->
+<section class="card" id="intro">
+  <h2>How to Read This Guide</h2>
+  <p>This document combines <strong>actual farm data</strong> (real electricity bills, confirmed diesel prices) with clearly labelled estimates and unknowns. Every number carries a badge: <span class="src">actual bill</span> means it comes directly from your FESCO bill; <span class="src src-est">estimated</span> means it's a reasonable assumption; <span class="src src-warn">ask installer</span> means you need a quote before relying on that number.</p>
+  <p>The interactive calculator at the bottom lets you change any assumption and see how the results shift. A <strong>checklist of 8 questions</strong> tells you exactly what to verify before committing.</p>
+</section>
+
+<!-- ── CURRENT ENERGY COSTS ──────────────────────────────── -->
+<section class="card" id="current-costs">
+  <h2>Current Energy Costs</h2>
+
+  <p>Your farm has two major energy expenses: electricity from the FESCO grid, and diesel for the backup generator during load shedding.</p>
+
+  <h3 style="margin:16px 0 8px; color:#5D4037; font-family:Georgia,serif; font-size:1rem;">Electricity Bills — Dec 2024 to Nov 2025 <span class="src src-bill">actual bill</span></h3>
+  <p class="text-muted" style="margin-bottom:8px;">Feeder: New Khanuana 101204 &nbsp;|&nbsp; FESCO, Faisalabad</p>
+  <div style="overflow-x:auto">
+  <table>
+    <thead><tr>
+      <th>Month</th>
+      <th>MDI (kW)</th>
+      <th style="text-align:right">Units (kWh)</th>
+      <th style="text-align:right">Bill (PKR)</th>
+    </tr></thead>
+    <tbody>
+      <tr><td>Dec 2024</td><td>—</td><td class="num">2,100</td><td class="num">130,063</td></tr>
+      <tr><td>Jan 2025</td><td>5</td><td class="num">6,180</td><td class="num">340,800</td></tr>
+      <tr><td>Feb 2025</td><td>28</td><td class="num">1,740</td><td class="num">136,650</td></tr>
+      <tr><td>Mar 2025</td><td>12</td><td class="num">3,180</td><td class="num">188,207</td></tr>
+      <tr><td>Apr 2025</td><td>22</td><td class="num">16,560</td><td class="num">757,069</td></tr>
+      <tr><td>May 2025</td><td>40</td><td class="num">2,520</td><td class="num">180,423</td></tr>
+      <tr><td>Jun 2025</td><td>19</td><td class="num">12,420</td><td class="num">574,745</td></tr>
+      <tr><td>Jul 2025</td><td>39</td><td class="num">19,440</td><td class="num">953,002</td></tr>
+      <tr><td>Aug 2025</td><td>50</td><td class="num">7,920</td><td class="num">432,223</td></tr>
+      <tr><td>Sep 2025</td><td>32</td><td class="num">18,480</td><td class="num">841,337</td></tr>
+      <tr><td>Oct 2025</td><td>64</td><td class="num">1,440</td><td class="num">187,358</td></tr>
+      <tr><td>Nov 2025</td><td>44</td><td class="num">1,980</td><td class="num">163,005</td></tr>
+    </tbody>
+    <tfoot><tr>
+      <td colspan="2"><strong>Annual Total</strong></td>
+      <td class="num">93,960</td>
+      <td class="num">4,884,882</td>
+    </tr></tfoot>
+  </table>
+  </div>
+
+  <p class="text-muted">MDI = Maximum Demand Indicator (peak kW drawn from grid). Peak demand in October was 64 kW. This is the highest single-month grid demand — the 100 kW solar system would already exceed this on most days.</p>
+  <p class="text-muted">Effective all-in electricity cost: <strong>₨52/kWh</strong> — this includes base tariff plus all fuel adjustment charges, taxes, and surcharges visible in the actual bills.</p>
+
+  <div class="divider"><div class="divider-diamond"></div></div>
+
+  <h3 style="margin:0 0 10px; color:#5D4037; font-family:Georgia,serif; font-size:1rem;">Diesel (Generator Backup)</h3>
+  <div class="two-col">
+    <div class="stat-box orange">
+      <div class="stat-label">Annual consumption <span class="src src-bill">owner's notes</span></div>
+      <div class="stat-val">13,000 L</div>
+      <div class="stat-sub">High-Speed Diesel per year</div>
+    </div>
+    <div class="stat-box red">
+      <div class="stat-label">Diesel price <span class="src">OGRA Apr 3 2026</span></div>
+      <div class="stat-val">₨520/L</div>
+      <div class="stat-sub">↑ 55% hike on April 3. Previous: ₨336/L</div>
+    </div>
+  </div>
+
+  <div class="highlight-box warning" style="margin-top:14px">
+    <p><strong>⚠️ Diesel price caution:</strong> OGRA raised HSD from ₨335.86 to ₨520.35 per litre on April 3, 2026 — a 55% increase in a single day. This is exceptional and may not hold. The calculator lets you test both price points. Annual diesel cost at ₨520/litre: <strong>₨67.6 lakh</strong>. At ₨336/litre: <strong>₨43.7 lakh</strong>.</p>
+  </div>
+
+  <div class="divider"><div class="divider-diamond"></div></div>
+
+  <h3 style="margin:0 0 12px; color:#5D4037; font-family:Georgia,serif; font-size:1rem;">Total Annual Energy Spend</h3>
+  <div class="two-col">
+    <div class="stat-box red">
+      <div class="stat-label">At ₨520/L diesel</div>
+      <div class="stat-val">₨116.5 lakh</div>
+      <div class="stat-sub">₨48.9L electricity + ₨67.6L diesel</div>
+    </div>
+    <div class="stat-box orange">
+      <div class="stat-label">At ₨336/L diesel</div>
+      <div class="stat-val">₨92.6 lakh</div>
+      <div class="stat-sub">₨48.9L electricity + ₨43.7L diesel</div>
+    </div>
+  </div>
+  <p class="text-muted" style="margin-top:8px">Either way, energy is one of the largest costs on the farm. Solar has the potential to dramatically reduce both.</p>
+
+  <p class="text-muted" style="margin-top:8px; font-style:italic;">Note: we do not yet know how much of the 13,000 litres goes specifically to generators vs. other uses (farm vehicles, heating, etc.). See Question 3 in the checklist below.</p>
+</section>
+
+<!-- ── SOLAR PRODUCTION ───────────────────────────────────── -->
+<section class="card" id="solar">
+  <h2>☀️ What a 100 kW System Produces in Faisalabad</h2>
+
+  <p>Faisalabad has strong solar irradiance for most of the year. Average peak sun hours by season <span class="src">NASA POWER via ProfileSolar.com</span>:</p>
+
+  <div style="overflow-x:auto">
+  <table>
+    <thead><tr><th>Season</th><th>Months</th><th style="text-align:right">kWh/kWp/day</th><th style="text-align:right">100 kW output/day</th></tr></thead>
+    <tbody>
+      <tr><td>🌸 Spring</td><td>Mar–May</td><td class="num">6.52</td><td class="num">652 kWh</td></tr>
+      <tr><td>☀️ Summer</td><td>Jun–Aug</td><td class="num">6.36</td><td class="num">636 kWh</td></tr>
+      <tr><td>🍂 Autumn</td><td>Sep–Nov</td><td class="num">4.75</td><td class="num">475 kWh</td></tr>
+      <tr><td>❄️ Winter</td><td>Dec–Feb</td><td class="num">3.40</td><td class="num">340 kWh</td></tr>
+      <tr><td colspan="2"><strong>Annual average</strong></td><td class="num"><strong>5.26</strong></td><td class="num"><strong>526 kWh/day</strong></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3 style="margin:16px 0 8px; color:#5D4037; font-family:Georgia,serif; font-size:1rem;">Realistic Annual Output After Losses</h3>
+
+  <div style="overflow-x:auto">
+  <table>
+    <thead><tr><th>Stage</th><th>Adjustment</th><th style="text-align:right">Annual kWh</th></tr></thead>
+    <tbody>
+      <tr><td>Nameplate (100 kW × 5.26 h × 365 days)</td><td>—</td><td class="num">192,000</td></tr>
+      <tr><td>System efficiency (wiring, inverter, mismatch)</td><td>–20% <span class="src src-est">estimated</span></td><td class="num">153,600</td></tr>
+      <tr><td>Soiling/dust loss (Faisalabad, dusty climate)</td><td>–10% <span class="src src-est">estimated</span></td><td class="num">138,240</td></tr>
+    </tbody>
+    <tfoot><tr><td colspan="2"><strong>Conservative annual output</strong></td><td class="num">~138,000 kWh</td></tr></tfoot>
+  </table>
+  </div>
+
+  <div class="highlight-box gold">
+    <p><strong>Key comparison:</strong> Your farm uses 93,960 kWh per year from the grid. The 100 kW solar system would produce ~138,000 kWh — roughly <strong>47% more than your current grid consumption</strong>. The surplus is exported to the grid (for a credit) or simply spills unused if the grid cannot absorb it.</p>
+    <p style="margin-top:6px">However: roughly half your electricity is consumed at night (fans, lighting, temperature control run 24/7). Solar only generates during daylight. See the calculator for how this timing mismatch affects savings.</p>
+  </div>
+
+  <div class="highlight-box warning" style="margin-top:10px">
+    <p><strong>⚠️ Soiling warning for Faisalabad:</strong> Panels in Faisalabad's dusty industrial environment can lose 10–25% of output without regular cleaning. One study found 61% performance loss with heavy soiling. Farm staff should clean panels with water and a soft brush <strong>every 10–15 days</strong> during dry season. Without cleaning, payback periods extend significantly. <span class="src src-est">Soiling research</span></p>
+  </div>
+</section>
+
+<!-- ── POLICY CHANGE ──────────────────────────────────────── -->
+<section class="card card-warning" id="policy">
+  <h2>⚠️ Critical Policy Change: Net Metering Was Abolished (Feb 9, 2026)</h2>
+
+  <p>Pakistan's regulator NEPRA issued <a href="https://www.nepra.org.pk/Legislation/3-Reg/3.35%20NEPRA%20%20Prosumer%20Regulations%202026/NEPRA%20Prosumer%20Regulations%20(SRO%20251(I)2026)%2009-02-26.PDF" target="_blank">SRO 251(I)/2026</a> on February 9, 2026, replacing net metering with <strong>net billing</strong>.</p>
+
+  <div style="overflow-x:auto; margin:14px 0">
+  <table>
+    <thead><tr><th>Policy</th><th>Who it applies to</th><th style="text-align:right">Export rate (PKR/unit)</th><th>Contract term</th></tr></thead>
+    <tbody>
+      <tr style="background:#E8F5E9"><td><strong>Old net metering</strong></td><td>Agreements signed before Feb 9, 2026</td><td class="num"><strong>₨27.00</strong></td><td>Up to 10 years</td></tr>
+      <tr style="background:#FFEBEE"><td><strong>New net billing</strong></td><td>New applications from Feb 9, 2026 onward</td><td class="num"><strong>₨11.30</strong></td><td>5 years</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <p>You buy grid electricity at ~₨52/kWh but can only sell surplus at ₨11.30/kWh under the new policy. This changes the economics of exporting surplus significantly.</p>
+
+  <div class="highlight-box warning">
+    <p><strong>Why did this happen?</strong> IEEFA analysis (April 2025) found that Pakistan's 5.3 GW of net-metered solar had shifted ₨159 billion in grid costs onto non-solar consumers. Power companies (DISCOs) were losing money on every unit exported at the old rate. The policy change was a predictable response — and signals that further tightening is possible. <span class="src">IEEFA April 2025 report</span></p>
+  </div>
+
+  <div class="highlight-box gold" style="margin-top:12px">
+    <p>🐓 <strong>Action required before deciding:</strong> Contact FESCO immediately to confirm whether the farm already holds a net metering agreement (from a previous application or the current installer's quotes). If you have a valid grandfathered agreement at ₨27/unit, the economics are much better. If not, all calculations should use the new ₨11.30 rate. This single factor can change annual savings by <strong>15–20 lakh PKR per year</strong>.</p>
+  </div>
+</section>
+
+<!-- ── ANNUAL SAVINGS ─────────────────────────────────────── -->
+<section class="card" id="savings">
+  <h2>Estimated Annual Savings</h2>
+  <p>The following uses default assumptions (adjustable in the calculator). Electricity savings are calculated under <strong>new net billing (₨11.30/unit export)</strong> — the less favourable but more likely scenario for a new application.</p>
+
+  <h3 style="margin:16px 0 8px; color:#5D4037; font-family:Georgia,serif; font-size:1rem;">How electricity savings work</h3>
+  <p>During daylight hours, solar covers the farm's daytime load directly — every kWh self-consumed saves ₨52 (the full grid rate including taxes). Surplus solar is exported at ₨11.30. At night, you still buy from the grid at ₨52. The <strong>self-consumption ratio</strong> — what fraction of solar production your farm actually uses in real time — is the most important assumption.</p>
+  <p>For a 24/7 poultry farm (fans and temperature control running continuously), we estimate <strong>40%</strong> of solar production is self-consumed directly. The remaining 60% is exported. <span class="src src-est">estimated</span></p>
+
+  <div style="overflow-x:auto; margin:14px 0">
+  <table>
+    <thead><tr>
+      <th>Component</th>
+      <th>Calculation</th>
+      <th style="text-align:right">Annual saving (PKR)</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td>Electricity: self-consumed <span class="src src-est">40% of 138k kWh</span></td>
+        <td>55,200 kWh × ₨52</td>
+        <td class="num">28,70,400</td>
+      </tr>
+      <tr>
+        <td>Electricity: export revenue <span class="src">NEPRA net billing</span></td>
+        <td>82,800 kWh × ₨11.30</td>
+        <td class="num">9,35,640</td>
+      </tr>
+      <tr>
+        <td>Electricity: remaining grid cost <span class="src src-bill">still buying at night</span></td>
+        <td>38,760 kWh × ₨52 = <em>–20,15,520</em></td>
+        <td class="num" style="color:#B71C1C">–20,15,520</td>
+      </tr>
+      <tr>
+        <td><strong>Net electricity saving</strong></td>
+        <td>was ₨48.9L, now ₨10.8L net cost</td>
+        <td class="num"><strong>38,05,000</strong></td>
+      </tr>
+      <tr>
+        <td>Diesel: generator use reduced <span class="src src-est">35% reduction, conservative</span></td>
+        <td>4,550 L × ₨520</td>
+        <td class="num">23,66,000</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr><td colspan="2"><strong>Total annual savings (conservative)</strong></td><td class="num">~61.7 lakh</td></tr>
+    </tfoot>
+  </table>
+  </div>
+
+  <div class="highlight-box gold">
+    <p><strong>With old net metering (₨27/unit, if grandfathered):</strong> Export revenue rises to ₨82,800 × ₨27 = ₨22.4 lakh, increasing total savings by ~₨13 lakh/year — taking the total to approximately ₨75 lakh/year.</p>
+  </div>
+  <div class="highlight-box" style="margin-top:10px">
+    <p><strong>With batteries (Option 3):</strong> More solar is used directly (less export needed); diesel savings jump to ~70–80% reduction (generators rarely needed). Total savings could reach ₨85–100 lakh/year. But the battery system cost is ₨2 crore and batteries need replacing every 10–12 years at unknown cost. <span class="src src-warn">ask installer for battery replacement quote</span></p>
+  </div>
+</section>
+
+<!-- ── THREE OPTIONS ──────────────────────────────────────── -->
+<section class="card" id="options">
+  <h2>The Three Options Compared</h2>
+
+  <div style="overflow-x:auto">
+  <table class="options-table">
+    <thead><tr>
+      <th>Factor</th>
+      <th class="opt-col-1">Option 1<br>On-grid 100 kW</th>
+      <th class="opt-col-2">Option 2<br>Hybrid (no battery)</th>
+      <th class="opt-col-3">Option 3<br>Hybrid + Battery</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Installation cost</strong></td>
+        <td class="opt-col-1 num">₨1.00 crore</td>
+        <td class="opt-col-2 num">₨1.17 crore</td>
+        <td class="opt-col-3 num">₨2.00 crore</td>
+      </tr>
+      <tr>
+        <td><strong>Payback (rent foregone)</strong></td>
+        <td class="opt-col-1 num">40 months (3.3 yrs)</td>
+        <td class="opt-col-2 num">47 months (3.9 yrs)</td>
+        <td class="opt-col-3 num">80 months (6.7 yrs)</td>
+      </tr>
+      <tr>
+        <td><strong>Works during load shedding (daytime)</strong></td>
+        <td class="opt-col-1">✅ Yes — via generator + software link</td>
+        <td class="opt-col-2">✅ Yes — if grid is clean or generator running</td>
+        <td class="opt-col-3">✅ Yes — batteries bridge the gap</td>
+      </tr>
+      <tr>
+        <td><strong>Works during load shedding (cloudy day)</strong></td>
+        <td class="opt-col-1">⚠️ Partial — generator takes over</td>
+        <td class="opt-col-2">❌ No — system shuts off: fan/cooling failure</td>
+        <td class="opt-col-3">✅ Yes — batteries supply load</td>
+      </tr>
+      <tr>
+        <td><strong>Works at night (grid off)</strong></td>
+        <td class="opt-col-1">⚠️ Generator only</td>
+        <td class="opt-col-2">⚠️ Generator only</td>
+        <td class="opt-col-3">✅ Battery + generator backup</td>
+      </tr>
+      <tr>
+        <td><strong>Diesel reduction</strong></td>
+        <td class="opt-col-1">~35% <span class="src src-est">est</span></td>
+        <td class="opt-col-2">~35% <span class="src src-est">est</span></td>
+        <td class="opt-col-3">~75% <span class="src src-est">est</span></td>
+      </tr>
+      <tr>
+        <td><strong>Special risk</strong></td>
+        <td class="opt-col-1">⚠️ Generator–inverter software integration: reliability and warranty not proven locally <span class="src src-est">est</span></td>
+        <td class="opt-col-2">🚨 Cloudy day + grid off = fans stop = heat stress poultry deaths <span class="src">Cambridge journal</span></td>
+        <td class="opt-col-3">⚠️ Battery degradation in 40°C+ heat; replacement cost <strong>unknown</strong> <span class="src src-warn">ask installer</span></td>
+      </tr>
+      <tr>
+        <td><strong>Hidden / future costs</strong></td>
+        <td class="opt-col-1">Software support: ₨1–2L/yr <span class="src src-est">est</span><br>Inverter replacement in 8–12 yrs: unknown <span class="src src-warn">ask installer</span></td>
+        <td class="opt-col-2">Same as Option 1</td>
+        <td class="opt-col-3">Battery replacement every 10–12 yrs: <strong>unknown, likely ₨50–100 lakh</strong> <span class="src src-warn">ask installer</span><br>Inverter: same</td>
+      </tr>
+      <tr>
+        <td><strong>Net metering dependency</strong></td>
+        <td class="opt-col-1">Medium — exports ~60% of production</td>
+        <td class="opt-col-2">Medium</td>
+        <td class="opt-col-3">Low — batteries increase self-consumption; less export needed</td>
+      </tr>
+      <tr>
+        <td><strong>Overall reliability</strong></td>
+        <td class="opt-col-1">Good</td>
+        <td class="opt-col-2">⚠️ Acceptable but gap risk</td>
+        <td class="opt-col-3">Best</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <p class="text-muted" style="margin-top:10px">⚠️ Option 2 carries a specific biological risk: if clouds coincide with grid outage, ventilation fans stop and birds can die from heat stress within hours in Faisalabad's summer temperatures (45°C+). This is not hypothetical — it is documented in poultry energy literature.</p>
+</section>
+
+<!-- ── FINANCING DEAL ─────────────────────────────────────── -->
+<section class="card" id="deal">
+  <h2>The Financing Deal: Does It Work for the Owner?</h2>
+
+  <p>The arrangement: the partner finances the solar installation; the owner foregoes rent on <strong>one house (₨2.5 lakh/month)</strong> until the debt is repaid. After payoff, the owner gets both rents back and <em>owns the solar asset</em>.</p>
+
+  <h3 style="margin:16px 0 8px; color:#5D4037; font-family:Georgia,serif; font-size:1rem;">Payback timeline via foregone rent</h3>
+  <div style="overflow-x:auto">
+  <table>
+    <thead><tr><th>Option</th><th>Cost</th><th style="text-align:right">Months to pay off</th><th style="text-align:right">Years</th></tr></thead>
+    <tbody>
+      <tr><td>Option 1: On-grid</td><td>₨1.00 crore</td><td class="num">40 months</td><td class="num">3.3 years</td></tr>
+      <tr><td>Option 2: Hybrid (no battery)</td><td>₨1.17 crore</td><td class="num">47 months</td><td class="num">3.9 years</td></tr>
+      <tr><td>Option 3: Hybrid + Battery</td><td>₨2.00 crore</td><td class="num">80 months</td><td class="num">6.7 years</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3 style="margin:16px 0 8px; color:#5D4037; font-family:Georgia,serif; font-size:1rem;">The owner's monthly net position during repayment</h3>
+  <p>During the repayment period, the owner gives up ₨2.5 lakh/month in rent. But the business's energy costs drop — and the owner, as a 50% partner, receives half of those savings through increased profit. The net position:</p>
+
+  <div class="highlight-box gold">
+    <p><strong>Owner's gain</strong> (50% of annual savings ÷ 12): at ₨61.7 lakh/year savings = <strong>+₨2.57 lakh/month</strong></p>
+    <p><strong>Owner's cost</strong> (rent foregone): <strong>–₨2.50 lakh/month</strong></p>
+    <p style="margin-top:8px; font-size:1rem"><strong>Net: approximately break-even (+₨7,000/month) — or slightly positive from day one.</strong></p>
+    <p class="text-muted" style="margin-top:4px">At higher savings estimates (old net metering, or higher diesel prices), the owner is meaningfully better off during repayment. At the most conservative assumptions, the deal costs the owner very little per month.</p>
+  </div>
+
+  <h3 style="margin:16px 0 8px; color:#5D4037; font-family:Georgia,serif; font-size:1rem;">After the debt is cleared (month 41 onward for Option 1)</h3>
+  <div class="highlight-box">
+    <p>✅ Owner receives <strong>both house rents again</strong> (₨5 lakh/month)</p>
+    <p>✅ Continues to receive 50% of energy savings (₨2.5–4 lakh/month from savings)</p>
+    <p>✅ <strong>Owns the solar asset</strong> (worth ₨1 crore+ at today's prices)</p>
+    <p>✅ Can renegotiate rent <strong>upward</strong> — the farm now has its own power infrastructure, which adds value to the land</p>
+  </div>
+</section>
+
+<!-- ── QUESTIONS CHECKLIST ───────────────────────────────── -->
+<section class="card card-questions" id="questions">
+  <h2>🐓 8 Questions to Verify Before Deciding</h2>
+  <p>These are the specific gaps in our data. Until these are answered, the numbers above carry material uncertainty.</p>
+
+  <ol class="checklist">
+    <li>
+      <span class="q-num">1</span>
+      <div class="q-body">
+        <strong>Does the farm already hold a FESCO net metering agreement?</strong>
+        <p>If yes: what rate (₨27/unit grandfathered, or ₨11.30 new billing) and when does it expire? A grandfathered ₨27 agreement changes annual savings by <strong>up to ₨15–20 lakh/year</strong>. Contact FESCO's net metering office or your installer to check. <span class="src src-warn">urgent — verify before signing</span></p>
+      </div>
+    </li>
+    <li>
+      <span class="q-num">2</span>
+      <div class="q-body">
+        <strong>How many hours per day is your feeder blacked out, and at what times (day or night)?</strong>
+        <p>This drives both how much diesel is saved and how often the generator must run. Check the PITC load management portal: <a href="https://ccms.pitc.com.pk/FeederDetails" target="_blank">ccms.pitc.com.pk/FeederDetails</a> — select Faisalabad, your grid station, and feeder "New Khanuana". <span class="src src-est">currently assumed 35% diesel reduction</span></p>
+      </div>
+    </li>
+    <li>
+      <span class="q-num">3</span>
+      <div class="q-body">
+        <strong>Of the 13,000 litres of diesel per year, how much is specifically for generators vs. other uses?</strong>
+        <p>If some diesel is for farm vehicles or other equipment, the solar-driven savings calculation needs adjusting. Our model assumes 100% of the diesel is for generator backup. <span class="src src-est">assumed 100% generator</span></p>
+      </div>
+    </li>
+    <li>
+      <span class="q-num">4</span>
+      <div class="q-body">
+        <strong>What is the total south-facing, unobstructed roof area across both sheds?</strong>
+        <p>A 100 kW system needs approximately 500–600 m² of usable roof. Confirm with the installer that the roof can structurally hold the system weight (~200–300 kg for panels + mounting). Roof strengthening could add ₨15–25 lakh. <span class="src src-warn">ask installer for structural assessment</span></p>
+      </div>
+    </li>
+    <li>
+      <span class="q-num">5</span>
+      <div class="q-body">
+        <strong>What is the battery bank replacement cost after 10–12 years for Option 3?</strong>
+        <p>Lithium batteries in Pakistan's hot climate (40°C+ summers) degrade faster than in cooler regions. A 25-year panel life means 2 battery replacement cycles. Without this number, Option 3's true 25-year cost cannot be calculated. <span class="src src-warn">critical gap for Option 3</span></p>
+      </div>
+    </li>
+    <li>
+      <span class="q-num">6</span>
+      <div class="q-body">
+        <strong>What does the generator–inverter integration software for Option 1 cost, and who provides ongoing support?</strong>
+        <p>The installer proposed third-party software to link the 60 kW generator to the on-grid inverter. Ask for: the software vendor name, annual support cost, warranty terms, and whether the inverter warranty remains valid with this modification. <span class="src src-warn">reliability risk</span></p>
+      </div>
+    </li>
+    <li>
+      <span class="q-num">7</span>
+      <div class="q-body">
+        <strong>Does the installer's quote include or exclude the potential 18% GST on imported solar panels?</strong>
+        <p>Pakistan is considering 18% GST on imported panels (proposal pending as of April 2026). If applied after you sign, the cost could increase by ₨8–15 lakh. Request a price-locked quote and ask specifically whether they'll absorb any future GST change. <span class="src src-warn">regulatory risk</span></p>
+      </div>
+    </li>
+    <li>
+      <span class="q-num">8</span>
+      <div class="q-body">
+        <strong>What is the actual peak simultaneous electrical load of both sheds at full capacity?</strong>
+        <p>The electricity bills show a maximum MDI of 64 kW (grid peak demand, October 2025). But during load shedding when the generator runs both sheds, what is the total peak kW requirement? If it exceeds 60 kW (generator capacity), there is already a supply gap — solar may help address it. <span class="src src-est">max grid MDI = 64 kW from bills</span></p>
+      </div>
+    </li>
+  </ol>
+</section>
+
+<!-- ── CALCULATOR ─────────────────────────────────────────── -->
+<section class="card card-calculator" id="calculator">
+  <h2>🔢 Interactive Calculator</h2>
+  <p class="no-print text-muted">Adjust the assumptions below. All results update automatically. Numbers are in Pakistani Rupees (PKR).</p>
+
+  <div class="calc-grid">
+    <div class="calc-field">
+      <label>Diesel price (₨/litre) <span class="src">OGRA</span></label>
+      <div class="range-row">
+        <input type="range" id="i-diesel-price" min="200" max="700" step="5" value="520" oninput="syncVal(this,'v-diesel-price');calculate()">
+        <span class="range-val" id="v-diesel-price">₨520</span>
+      </div>
+      <span class="text-muted" style="font-size:0.75rem">Pre-April 3: ₨336 &nbsp;|&nbsp; Post-April 3: ₨520</span>
+    </div>
+
+    <div class="calc-field">
+      <label>Annual diesel (litres) <span class="src src-bill">owner's notes</span></label>
+      <div class="range-row">
+        <input type="range" id="i-diesel-litres" min="5000" max="25000" step="500" value="13000" oninput="syncVal(this,'v-diesel-litres');calculate()">
+        <span class="range-val" id="v-diesel-litres">13,000 L</span>
+      </div>
+    </div>
+
+    <div class="calc-field">
+      <label>Self-consumption ratio <span class="src src-est">estimated</span></label>
+      <div class="range-row">
+        <input type="range" id="i-self-consume" min="20" max="80" step="5" value="40" oninput="syncVal(this,'v-self-consume');calculate()">
+        <span class="range-val" id="v-self-consume">40%</span>
+      </div>
+      <span class="text-muted" style="font-size:0.75rem">% of solar used directly (not exported)</span>
+    </div>
+
+    <div class="calc-field">
+      <label>Export rate (₨/unit) <span class="src">NEPRA</span></label>
+      <div class="range-row">
+        <input type="range" id="i-export-rate" min="5" max="30" step="0.5" value="11.3" oninput="syncVal(this,'v-export-rate');calculate()">
+        <span class="range-val" id="v-export-rate">₨11.3</span>
+      </div>
+      <span class="text-muted" style="font-size:0.75rem">New: ₨11.3 &nbsp;|&nbsp; Grandfathered: ₨27</span>
+    </div>
+
+    <div class="calc-field">
+      <label>Diesel reduction — Options 1 &amp; 2 <span class="src src-est">estimated</span></label>
+      <div class="range-row">
+        <input type="range" id="i-diesel-red-ongrid" min="5" max="80" step="5" value="35" oninput="syncVal(this,'v-diesel-red-ongrid');calculate()">
+        <span class="range-val" id="v-diesel-red-ongrid">35%</span>
+      </div>
+    </div>
+
+    <div class="calc-field">
+      <label>Diesel reduction — Option 3 (battery) <span class="src src-est">estimated</span></label>
+      <div class="range-row">
+        <input type="range" id="i-diesel-red-battery" min="10" max="95" step="5" value="75" oninput="syncVal(this,'v-diesel-red-battery');calculate()">
+        <span class="range-val" id="v-diesel-red-battery">75%</span>
+      </div>
+    </div>
+
+    <div class="calc-field">
+      <label>Annual energy price escalation <span class="src src-est">assumption</span></label>
+      <div class="range-row">
+        <input type="range" id="i-escalation" min="0" max="25" step="1" value="10" oninput="syncVal(this,'v-escalation');calculate()">
+        <span class="range-val" id="v-escalation">10%/yr</span>
+      </div>
+    </div>
+
+    <div class="calc-field">
+      <label>Battery replacement cost (Option 3) <span class="src src-warn">ask installer</span></label>
+      <div class="range-row">
+        <input type="range" id="i-battery-replacement" min="1000000" max="15000000" step="500000" value="5000000" oninput="syncVal(this,'v-battery-replacement');calculate()">
+        <span class="range-val" id="v-battery-replacement">₨50L</span>
+      </div>
+      <span class="text-muted" style="font-size:0.75rem">Highly uncertain — get an installer quote</span>
+    </div>
+  </div>
+
+  <div class="calc-results">
+    <h3>Results at current settings</h3>
+    <p style="font-size:0.8rem; opacity:0.75; margin-bottom:12px">Solar output: <span id="r-solar-net">—</span> kWh/yr &nbsp;|&nbsp; Self-consumed: <span id="r-self-consumed">—</span> kWh &nbsp;|&nbsp; Exported: <span id="r-exported">—</span> kWh</p>
+    <div class="results-grid">
+      <div class="result-card opt1">
+        <div class="opt-label">Option 1 — On-grid</div>
+        <div class="metric">
+          <div class="metric-label">Annual savings</div>
+          <div class="metric-val" id="r-sav-1">—</div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">Payback via rent</div>
+          <div class="metric-val" id="r-pb-1">—</div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">10-yr cumulative savings</div>
+          <div class="metric-val" id="r-ty-1">—</div>
+        </div>
+      </div>
+      <div class="result-card opt2">
+        <div class="opt-label">Option 2 — Hybrid (no battery)</div>
+        <div class="metric">
+          <div class="metric-label">Annual savings</div>
+          <div class="metric-val" id="r-sav-2">—</div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">Payback via rent</div>
+          <div class="metric-val" id="r-pb-2">—</div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">10-yr cumulative savings</div>
+          <div class="metric-val" id="r-ty-2">—</div>
+        </div>
+      </div>
+      <div class="result-card opt3">
+        <div class="opt-label">Option 3 — Hybrid + Battery</div>
+        <div class="metric">
+          <div class="metric-label">Annual savings</div>
+          <div class="metric-val" id="r-sav-3">—</div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">Payback via rent</div>
+          <div class="metric-val" id="r-pb-3">—</div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">10-yr net (after battery repl.)</div>
+          <div class="metric-val" id="r-ty-3">—</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="owner-net-box">
+      <div class="label">Owner's monthly net position during repayment (Option 1) — 50% of savings minus ₨2.5L rent foregone</div>
+      <div class="owner-net-val" id="r-owner-net">—</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── EXPERT VIEWS ───────────────────────────────────────── -->
+<section class="card" id="experts">
+  <h2>What the Research Says</h2>
+
+  <div class="expert-block">
+    <div class="expert-tag">IEEFA — Institute for Energy Economics &amp; Financial Analysis (April 2025) ★★★★★</div>
+    <p>Pakistan's solar expansion has been remarkable — 5.3 GW of net-metered capacity by March 2025, helping avoid USD 12 billion in fossil fuel imports. However, IEEFA warns that the rapid growth strained the grid and shifted ₨159 billion in costs onto non-solar consumers, making the February 2026 policy reversal predictable and likely not the last. IEEFA explicitly flags that Pakistan's regulatory environment around solar remains unstable, and that future policy changes are a real investment risk for commercial installations. <a href="https://ieefa.org/resources/net-metering-reforms-and-grid-challenges-amid-pakistans-solar-rise" target="_blank">Source</a></p>
+  </div>
+
+  <div class="expert-block">
+    <div class="expert-tag">Cambridge / World's Poultry Science Journal ★★★★</div>
+    <p>Researchers studying Pakistani poultry farms have documented the severe economic impact of the electricity crisis on poultry production: diesel costs for generators, heat stress mortality when ventilation fails, and reduced output during prolonged outages. The studies identify hybrid PV-diesel systems as the most feasible solution for broiler farms — but emphasize that any gap in power supply during summer heat events (temperatures above 40°C) causes irreversible bird losses within hours. This is the specific risk of Option 2 (hybrid without battery). <a href="https://www.cambridge.org/core/journals/world-s-poultry-science-journal/article/abs/electricity-crisis-and-energy-efficiency-to-poultry-production-in-pakistan/EF6DB37DF9B47AA18A3660430549376C" target="_blank">Source</a></p>
+  </div>
+
+  <div class="expert-block">
+    <div class="expert-tag">Academic note on payback periods ★★★</div>
+    <p>A 2022 feasibility study (Acta Mechanica Malaysia) calculated a 26–27 year payback for solar on a small poultry shed in Pakistan. This should not alarm you: the study modeled a very small system (for 32 birds), assumed pre-2022 energy prices, and did not model diesel savings. At today's energy prices — diesel at ₨520/litre and electricity at ₨52/kWh — the economics are fundamentally different. However, <strong>the absence of published case studies showing profitable 100 kW commercial poultry solar operations in Punjab is itself notable</strong>. If this investment is as obviously good as the numbers suggest, we would expect more documentation of success. This gap warrants caution alongside optimism. <a href="https://ideas.repec.org/a/zib/zbnamm/v5y2022i2p52-57.html" target="_blank">Source</a></p>
+  </div>
+
+  <div class="expert-block">
+    <div class="expert-tag">Grid reliability context ★★★</div>
+    <p>FESCO (Faisalabad Electric Supply Company) operates a feeder classification system: high-recovery feeders receive near-zero load shedding; low-recovery feeders face 8–12 hours/day. Commercial agricultural feeders typically fall in the middle. Your specific feeder (New Khanuana 101204) can be checked at <a href="https://ccms.pitc.com.pk/FeederDetails" target="_blank">ccms.pitc.com.pk</a>. This data is essential: if load shedding is primarily at night, solar's impact on diesel costs is lower than assumed. If it's mostly daytime, solar is far more valuable.</p>
+  </div>
+</section>
+
+<!-- ── SENSITIVITY TABLE ──────────────────────────────────── -->
+<section class="card" id="sensitivity">
+  <h2>Rising Energy Prices: 10-Year Savings Outlook</h2>
+  <p class="text-muted">Savings at year 1 (current prices) vs. year 5 and year 10, assuming annual energy price escalation as shown. Based on default calculator inputs.</p>
+
+  <div class="sensitivity-wrapper">
+    <table id="sensitivity-table">
+      <thead>
+        <tr>
+          <th>Escalation</th>
+          <th colspan="2">Option 1 (On-grid)</th>
+          <th colspan="2">Option 3 (Battery)</th>
+        </tr>
+        <tr>
+          <th></th>
+          <th style="text-align:right">Yr 1 savings</th>
+          <th style="text-align:right">10-yr total</th>
+          <th style="text-align:right">Yr 1 savings</th>
+          <th style="text-align:right">10-yr total (after batt.)</th>
+        </tr>
+      </thead>
+      <tbody id="sensitivity-body"></tbody>
+    </table>
+  </div>
+  <p class="text-muted" style="margin-top:8px">These numbers update when you change the calculator inputs above.</p>
+</section>
+
+<!-- ── RECOMMENDATION ────────────────────────────────────────── -->
+<section class="card card-recommendation" id="recommendation">
+  <h2>The Verdict</h2>
+
+  <div class="verdict-grid">
+    <div class="verdict-card yes">
+      <div class="badge">✅</div>
+      <div class="v-title">Option 1 — On-grid</div>
+      <div class="v-sub">Financially sound. Low risk for the owner's cash position. Proceed once net metering question is confirmed and generator–inverter integration is validated.</div>
+    </div>
+    <div class="verdict-card caution">
+      <div class="badge">⚠️</div>
+      <div class="v-title">Option 3 — Hybrid + Battery</div>
+      <div class="v-sub">Better operationally, but do not commit until battery replacement cost is quoted. At ₨2 crore plus unknown battery cycles, long-term economics need a full 25-year model.</div>
+    </div>
+    <div class="verdict-card no">
+      <div class="badge">❌</div>
+      <div class="v-title">Option 2 — Hybrid (no battery)</div>
+      <div class="v-sub">Not recommended. The cloudy-day + grid-outage failure mode is a real biological risk for a poultry operation. The cost saving vs. Option 1 (₨17 lakh) does not justify the downside.</div>
+    </div>
+  </div>
+
+  <div class="highlight-box" style="margin-top:18px">
+    <p><strong>For the owner specifically:</strong> The financing deal is favourable. Under conservative assumptions, your 50% share of energy savings roughly equals the rent you forgo during the repayment period — meaning the solar transition costs you almost nothing in the near term, while after 40 months (Option 1) you own a ₨1 crore asset and your rent income is fully restored. Rising energy prices make the deal progressively better over time.</p>
+    <p style="margin-top:8px"><strong>Most important single action:</strong> Confirm with FESCO whether the farm has or can obtain a grandfathered ₨27/unit net metering agreement. If yes, Option 1 becomes even more attractive. If no, the ₨11.30/unit rate still produces a positive case — but the export revenue is substantially lower.</p>
+  </div>
+
+  <div class="highlight-box warning" style="margin-top:12px">
+    <p><strong>Policy risk to keep in mind:</strong> Pakistan's regulatory environment for solar has changed materially twice in 18 months (proposed cuts in 2024, abolition in Feb 2026). IEEFA warns further changes are possible. The most resilient option is to design for <strong>maximum self-consumption</strong> — meaning either Option 3 (batteries store solar for night use) or, if choosing Option 1, focusing on managing consumption to overlap with solar generation hours. Relying on export income is a regulatory risk.</p>
+  </div>
+</section>
+
+<!-- ── SOURCES ─────────────────────────────────────────────── -->
+<details id="sources">
+  <summary>📚 Sources &amp; Data Methodology</summary>
+  <div class="sources-inner">
+    <p class="text-muted" style="margin-bottom:12px">Each claim in this document is traceable to one of the following sources. Credibility ratings: ★★★★★ = primary/regulatory source or rigorous independent research; ★★★ = useful but verify independently.</p>
+
+    <div class="source-item">
+      <strong>Electricity bills (actual data)</strong> <span class="cred">★★★★★</span>
+      <div class="cred-note">FESCO bill image provided by farm owner. Feeder: New Khanuana 101204. Dec 2024–Nov 2025. All kWh and PKR figures in this document are from this source unless noted otherwise.</div>
+    </div>
+    <div class="source-item">
+      <strong>OGRA — HSD diesel price, April 2026</strong> <span class="cred">★★★★★</span>
+      <div class="cred-note">Oil &amp; Gas Regulatory Authority official petroleum prices. Pre-April 3: ₨335.86/L. Post-April 3 (current): ₨520.35/L. <a href="https://www.ogra.org.pk/notified-petroleum-prices" target="_blank">ogra.org.pk</a></div>
+    </div>
+    <div class="source-item">
+      <strong>NEPRA Prosumer Regulations 2026 (SRO 251(I)/2026)</strong> <span class="cred">★★★★★</span>
+      <div class="cred-note">Primary legal text abolishing net metering, effective Feb 9, 2026. Sets new export rate at ₨11.30/unit, 5-year contracts. <a href="https://www.nepra.org.pk/Legislation/3-Reg/3.35%20NEPRA%20%20Prosumer%20Regulations%202026/NEPRA%20Prosumer%20Regulations%20(SRO%20251(I)2026)%2009-02-26.PDF" target="_blank">nepra.org.pk</a></div>
+    </div>
+    <div class="source-item">
+      <strong>IEEFA — Net Metering Reforms and Grid Challenges (April 2025)</strong> <span class="cred">★★★★★</span>
+      <div class="cred-note">Independent energy analysis. Quantifies ₨159 billion cost shift to non-solar consumers; explains policy change rationale; flags ongoing regulatory risk. <a href="https://ieefa.org/resources/net-metering-reforms-and-grid-challenges-amid-pakistans-solar-rise" target="_blank">ieefa.org</a></div>
+    </div>
+    <div class="source-item">
+      <strong>Cambridge / World's Poultry Science Journal — Electricity crisis in Pakistan poultry</strong> <span class="cred">★★★★</span>
+      <div class="cred-note">Peer-reviewed study on energy challenges and mortality risk for poultry operations during outages. <a href="https://www.cambridge.org/core/journals/world-s-poultry-science-journal/article/abs/electricity-crisis-and-energy-efficiency-to-poultry-production-in-pakistan/EF6DB37DF9B47AA18A3660430549376C" target="_blank">cambridge.org</a></div>
+    </div>
+    <div class="source-item">
+      <strong>ProfileSolar.com — Faisalabad solar irradiation data (NASA POWER)</strong> <span class="cred">★★★</span>
+      <div class="cred-note">Satellite-derived data via NASA POWER API. Seasonal averages used for solar output calculation. Not ground-truthed. <a href="https://profilesolar.com/locations/Pakistan/Faisalabad/" target="_blank">profilesolar.com</a></div>
+    </div>
+    <div class="source-item">
+      <strong>Acta Mechanica Malaysia (2022) — Solar suitability for Pakistan poultry industry</strong> <span class="cred">★★★</span>
+      <div class="cred-note">Academic feasibility study. Calculated 26–27 year payback for a small poultry shed under 2022 conditions. Cited in this document for context, not as a direct comparator. <a href="https://ideas.repec.org/a/zib/zbnamm/v5y2022i2p52-57.html" target="_blank">ideas.repec.org</a></div>
+    </div>
+    <div class="source-item">
+      <strong>PITC Load Management Portal (FESCO feeder schedules)</strong> <span class="cred">★★★★</span>
+      <div class="cred-note">Official load shedding schedule by feeder. Used to verify load shedding hours. <a href="https://ccms.pitc.com.pk/FeederDetails" target="_blank">ccms.pitc.com.pk</a></div>
+    </div>
+    <div class="source-item">
+      <strong>Owner's notes (April 2026)</strong> <span class="cred">★★★★</span>
+      <div class="cred-note">Farm description, diesel consumption (13,000 L/year), partnership structure, installation quotes, rent terms. Provided by farm owner directly.</div>
+    </div>
+    <div class="source-item" style="margin-top:12px; background:#FFFDE7; padding:10px; border-radius:4px">
+      <strong>Assumptions not independently verified (flagged throughout as <span class="src src-est">estimated</span>)</strong>
+      <div class="cred-note">Self-consumption ratio (40%), diesel reduction percentages (35% / 75%), system efficiency (80%), soiling loss (10%), battery replacement cost (placeholder ₨50 lakh). These are informed estimates used for illustration. Actual values should be confirmed with your installer before making financial decisions.</div>
+    </div>
+  </div>
+</details>
+
+</main>
+
+<div class="truck-border-thin"></div>
+<footer>
+  <p>Iffath Poultry Farm — Solar Decision Guide &nbsp;·&nbsp; Prepared April 2026</p>
+  <p style="margin-top:4px">Data: FESCO electricity bills (actual), OGRA (diesel), NEPRA (policy), IEEFA (analysis). Estimates clearly labelled throughout.</p>
+  <p style="margin-top:4px"><em>This guide is for decision-support purposes. Verify all installer quotes and confirm FESCO net metering status before committing to any investment.</em></p>
+</footer>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- JAVASCRIPT — CALCULATOR LOGIC                            -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<script>
+  // ── CONSTANTS (from actual data) ───────────────────────────
+  const ANNUAL_KWH  = 93960;         // kWh/yr from grid [actual bill]
+  const ANNUAL_BILL = 4884882;       // PKR/yr electricity [actual bill]
+  const EFFECTIVE_RATE = ANNUAL_BILL / ANNUAL_KWH; // ~52 PKR/kWh
+
+  const COST_ONGRID    = 10000000;   // 1.00 crore PKR [installer quote]
+  const COST_HYBRID_NB = 11700000;   // 1.17 crore PKR [installer quote]
+  const COST_HYBRID_B  = 20000000;   // 2.00 crore PKR [installer quote]
+  const RENT_FOREGONE  = 250000;     // PKR/month [owner's notes]
+
+  // Solar production constants
+  const SOLAR_KW          = 100;     // kWp system size
+  const PEAK_SUN_HOURS    = 5.26;    // hrs/day annual average [NASA POWER / ProfileSolar]
+  const SYSTEM_EFFICIENCY = 0.80;    // inverter, wiring, mismatch losses [industry standard]
+  const SOILING_FACTOR    = 0.90;    // 10% soiling loss [Faisalabad dusty climate estimate]
+  const SOLAR_NET = SOLAR_KW * PEAK_SUN_HOURS * 365 * SYSTEM_EFFICIENCY * SOILING_FACTOR;
+  // = 100 × 5.26 × 365 × 0.80 × 0.90 = ~138,227 kWh/yr
+
+  // ── FORMAT HELPERS ──────────────────────────────────────────
+  function formatPKR(n) {
+    const absN = Math.abs(n);
+    const sign = n < 0 ? '–' : '';
+    if (absN >= 10000000) return sign + '₨' + (absN / 10000000).toFixed(2) + ' crore';
+    if (absN >= 100000)   return sign + '₨' + (absN / 100000).toFixed(1) + ' lakh';
+    return sign + '₨' + Math.round(absN).toLocaleString();
+  }
+
+  function setEl(id, val) {
+    const el = document.getElementById(id);
+    if (el) el.textContent = val;
+  }
+
+  function syncVal(input, displayId) {
+    const el = document.getElementById(displayId);
+    if (!el) return;
+    const v = parseFloat(input.value);
+    const id = input.id;
+    if (id === 'i-diesel-price') el.textContent = '₨' + v;
+    else if (id === 'i-diesel-litres') el.textContent = v.toLocaleString() + ' L';
+    else if (id === 'i-self-consume') el.textContent = v + '%';
+    else if (id === 'i-export-rate') el.textContent = '₨' + v;
+    else if (id === 'i-diesel-red-ongrid') el.textContent = v + '%';
+    else if (id === 'i-diesel-red-battery') el.textContent = v + '%';
+    else if (id === 'i-escalation') el.textContent = v + '%/yr';
+    else if (id === 'i-battery-replacement') el.textContent = formatPKR(v);
+  }
+
+  function calculate() {
+    const dieselPrice       = +document.getElementById('i-diesel-price').value;
+    const dieselLitres      = +document.getElementById('i-diesel-litres').value;
+    const selfConsumeRatio  = +document.getElementById('i-self-consume').value / 100;
+    const dieselRedOnGrid   = +document.getElementById('i-diesel-red-ongrid').value / 100;
+    const dieselRedBattery  = +document.getElementById('i-diesel-red-battery').value / 100;
+    const exportRate        = +document.getElementById('i-export-rate').value;
+    const escalationRate    = +document.getElementById('i-escalation').value / 100;
+    const batteryReplacement= +document.getElementById('i-battery-replacement').value;
+
+    // ── Solar production ──────────────────────────────────────
+    const solarNet = SOLAR_NET; // ~138,227 kWh (constant — doesn't change with user inputs in this model)
+
+    // ── Electricity savings ───────────────────────────────────
+    // selfConsumed: solar used directly by farm (capped at total grid consumption)
+    const selfConsumed = Math.min(solarNet * selfConsumeRatio, ANNUAL_KWH);
+    const exported     = solarNet - selfConsumed;
+    const remainingGrid = ANNUAL_KWH - selfConsumed;
+
+    const remainingGridCost = remainingGrid * EFFECTIVE_RATE;
+    const exportRevenue     = exported * exportRate;
+    // Net electricity cost after solar (credit export revenue against remaining grid bill)
+    // Cap: if export credit > remaining grid cost, excess credit may not be paid promptly
+    const newElecCost = Math.max(0, remainingGridCost - exportRevenue);
+    const elecSavings = ANNUAL_BILL - newElecCost;
+
+    // ── Diesel savings ────────────────────────────────────────
+    const dieselCostNow       = dieselLitres * dieselPrice;
+    const dieselSavOnGrid     = dieselCostNow * dieselRedOnGrid;
+    const dieselSavBattery    = dieselCostNow * dieselRedBattery;
+
+    // ── Total savings per option ──────────────────────────────
+    const savOnGrid  = elecSavings + dieselSavOnGrid;
+    const savHybrid  = elecSavings + dieselSavOnGrid; // same diesel reduction as on-grid
+    const savBattery = elecSavings + dieselSavBattery;
+
+    // ── Owner monthly net (during payback, Option 1) ──────────
+    const ownerMonthly = (savOnGrid * 0.5 / 12) - RENT_FOREGONE;
+
+    // ── Payback via foregone rent ─────────────────────────────
+    const pb1 = COST_ONGRID    / RENT_FOREGONE; // months
+    const pb2 = COST_HYBRID_NB / RENT_FOREGONE;
+    const pb3 = COST_HYBRID_B  / RENT_FOREGONE;
+
+    // ── 10-year cumulative savings with escalation ────────────
+    function tenYr(annualSaving, esc, extraCost) {
+      let total = 0;
+      for (let y = 0; y < 10; y++) total += annualSaving * Math.pow(1 + esc, y);
+      return total - (extraCost || 0);
+    }
+    const ty1 = tenYr(savOnGrid,  escalationRate);
+    const ty2 = tenYr(savHybrid,  escalationRate);
+    const ty3 = tenYr(savBattery, escalationRate, batteryReplacement);
+
+    // ── Update display ────────────────────────────────────────
+    setEl('r-solar-net',     Math.round(solarNet).toLocaleString());
+    setEl('r-self-consumed', Math.round(selfConsumed).toLocaleString());
+    setEl('r-exported',      Math.round(exported).toLocaleString());
+
+    // Options
+    const savs = [savOnGrid, savHybrid, savBattery];
+    const pbs  = [pb1, pb2, pb3];
+    const tys  = [ty1, ty2, ty3];
+    ['1','2','3'].forEach((n, i) => {
+      setEl(`r-sav-${n}`, formatPKR(savs[i]));
+      setEl(`r-pb-${n}`,  pb3ToText(pbs[i]));
+      const tyEl = document.getElementById(`r-ty-${n}`);
+      if (tyEl) {
+        tyEl.textContent = formatPKR(tys[i]);
+        tyEl.className = 'metric-val ' + (tys[i] >= 0 ? 'pos' : 'neg');
+      }
+    });
+
+    // Owner net
+    const ownerEl = document.getElementById('r-owner-net');
+    if (ownerEl) {
+      const label = ownerMonthly >= 0
+        ? formatPKR(ownerMonthly) + '/month better off ✓'
+        : formatPKR(Math.abs(ownerMonthly)) + '/month net cost';
+      ownerEl.textContent = label;
+      ownerEl.style.color = ownerMonthly >= 0 ? '#A5D6A7' : '#F48FB1';
+    }
+
+    // Update sensitivity table
+    buildSensitivityTable(savOnGrid, savBattery, batteryReplacement);
+  }
+
+  function pb3ToText(months) {
+    return months.toFixed(0) + ' months (' + (months / 12).toFixed(1) + ' yrs)';
+  }
+
+  function buildSensitivityTable(baseSavOnGrid, baseSavBattery, battReplacement) {
+    const scenarios = [
+      { label: '0% / year (prices flat)', esc: 0.00 },
+      { label: '5% / year',               esc: 0.05 },
+      { label: '10% / year',              esc: 0.10 },
+      { label: '15% / year',              esc: 0.15 },
+      { label: '20% / year',              esc: 0.20 },
+    ];
+
+    function tenYrCompound(base, esc, extra) {
+      let total = 0;
+      for (let y = 0; y < 10; y++) total += base * Math.pow(1 + esc, y);
+      return total - (extra || 0);
+    }
+
+    const tbody = document.getElementById('sensitivity-body');
+    if (!tbody) return;
+    tbody.innerHTML = '';
+    scenarios.forEach(s => {
+      const sav1_yr1 = baseSavOnGrid;
+      const sav1_total = tenYrCompound(baseSavOnGrid, s.esc);
+      const sav3_yr1 = baseSavBattery;
+      const sav3_total = tenYrCompound(baseSavBattery, s.esc, battReplacement);
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${s.label}</td>
+        <td class="num">${formatPKR(sav1_yr1)}</td>
+        <td class="num" style="font-weight:600">${formatPKR(sav1_total)}</td>
+        <td class="num">${formatPKR(sav3_yr1)}</td>
+        <td class="num" style="font-weight:600;color:${sav3_total >= 0 ? '#1B5E20' : '#B71C1C'}">${formatPKR(sav3_total)}</td>
+      `;
+      tbody.appendChild(tr);
+    });
+  }
+
+  // Initialise on load
+  window.addEventListener('DOMContentLoaded', calculate);
+</script>
+</body>
+</html>
