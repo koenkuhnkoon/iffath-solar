@@ -490,6 +490,28 @@
     .stat-box.red { background: #FFEBEE; border-color: #FFCDD2; }
     .stat-box.red .stat-val { color: #B71C1C; }
 
+    /* ── BACK TO TOP ──────────────────────────────────────── */
+    .back-top {
+      display: block;
+      text-align: right;
+      font-size: 0.75rem;
+      color: #A5D6A7;
+      text-decoration: none;
+      margin-top: 14px;
+      padding-top: 10px;
+      border-top: 1px solid #E8F5E9;
+      letter-spacing: 0.04em;
+    }
+    .back-top:hover { color: #F9A825; }
+    .card-warning .back-top { border-top-color: #FFCDD2; color: #EF9A9A; }
+    .card-warning .back-top:hover { color: #F9A825; }
+    .card-questions .back-top { border-top-color: #FFE0CC; color: #FFAB91; }
+    .card-questions .back-top:hover { color: #F9A825; }
+    .card-calculator .back-top { border-top-color: #FFF176; color: #FFF176; }
+    .card-calculator .back-top:hover { color: #F9A825; }
+    .card-recommendation .back-top { border-top-color: #C8E6C9; color: #A5D6A7; }
+    @media print { .back-top { display: none; } }
+
     /* ── PRINT ────────────────────────────────────────────── */
     @media print {
       body { background: white; font-size: 11pt; }
@@ -541,18 +563,18 @@
   <table style="font-size:0.88rem">
     <thead><tr><th>#</th><th>Section</th><th>What you'll find</th></tr></thead>
     <tbody>
-      <tr><td>1</td><td><strong>The Verdict</strong></td><td>The recommendation for each option — start here if you're in a hurry</td></tr>
-      <tr><td>2</td><td><strong>8 Questions to Verify</strong></td><td>Specific gaps that must be answered before signing anything</td></tr>
-      <tr><td>3</td><td><strong>Interactive Calculator</strong></td><td>Adjust any assumption (diesel price, export rate, etc.) and see live results</td></tr>
-      <tr><td>4</td><td><strong>Current Energy Costs</strong></td><td>Actual FESCO bill data and diesel spend — the baseline the solar must beat</td></tr>
-      <tr><td>5</td><td><strong>What Solar Produces</strong></td><td>Realistic output for 100 kW in Faisalabad's climate, after losses and soiling</td></tr>
-      <tr><td>6</td><td><strong>Net Billing Policy Change</strong></td><td>The February 2026 rule change that cut export rates — and why it matters</td></tr>
-      <tr><td>7</td><td><strong>Estimated Annual Savings</strong></td><td>Step-by-step savings calculation with all assumptions shown</td></tr>
-      <tr><td>8</td><td><strong>Three Options Compared</strong></td><td>Side-by-side table: costs, reliability, risks, hidden future costs</td></tr>
-      <tr><td>9</td><td><strong>The Financing Deal</strong></td><td>Does forgoing one house's rent make financial sense for the owner?</td></tr>
-      <tr><td>10</td><td><strong>What the Research Says</strong></td><td>IEEFA, Cambridge journal, and a note on the absence of published case studies</td></tr>
-      <tr><td>11</td><td><strong>Rising Energy Prices</strong></td><td>10-year sensitivity table at 0%, 5%, 10%, 15%, 20% annual escalation</td></tr>
-      <tr><td>12</td><td><strong>Sources &amp; Methodology</strong></td><td>Every claim traceable, with credibility ratings</td></tr>
+      <tr><td>1</td><td><a href="#recommendation"><strong>The Verdict</strong></a></td><td>The recommendation for each option — start here if you're in a hurry</td></tr>
+      <tr><td>2</td><td><a href="#questions"><strong>8 Questions to Verify</strong></a></td><td>Specific gaps that must be answered before signing anything</td></tr>
+      <tr><td>3</td><td><a href="#calculator"><strong>Interactive Calculator</strong></a></td><td>Adjust any assumption (diesel price, export rate, etc.) and see live results</td></tr>
+      <tr><td>4</td><td><a href="#current-costs"><strong>Current Energy Costs</strong></a></td><td>Actual FESCO bill data and diesel spend — the baseline the solar must beat</td></tr>
+      <tr><td>5</td><td><a href="#solar"><strong>What Solar Produces</strong></a></td><td>Realistic output for 100 kW in Faisalabad's climate, after losses and soiling</td></tr>
+      <tr><td>6</td><td><a href="#policy"><strong>Net Billing Policy Change</strong></a></td><td>The February 2026 rule change that cut export rates — and why it matters</td></tr>
+      <tr><td>7</td><td><a href="#savings"><strong>Estimated Annual Savings</strong></a></td><td>Step-by-step savings calculation with all assumptions shown</td></tr>
+      <tr><td>8</td><td><a href="#options"><strong>Three Options Compared</strong></a></td><td>Side-by-side table: costs, reliability, risks, hidden future costs</td></tr>
+      <tr><td>9</td><td><a href="#deal"><strong>The Financing Deal</strong></a></td><td>Does forgoing one house's rent make financial sense for the owner?</td></tr>
+      <tr><td>10</td><td><a href="#experts"><strong>What the Research Says</strong></a></td><td>IEEFA, Cambridge journal, and a note on the absence of published case studies</td></tr>
+      <tr><td>11</td><td><a href="#sensitivity"><strong>Rising Energy Prices</strong></a></td><td>10-year sensitivity table at 0%, 5%, 10%, 15%, 20% annual escalation</td></tr>
+      <tr><td>12</td><td><a href="#sources"><strong>Sources &amp; Methodology</strong></a></td><td>Every claim traceable, with credibility ratings</td></tr>
     </tbody>
   </table>
   <p class="text-muted" style="margin-top:10px">This guide was prepared in April 2026. Key inputs — especially OGRA diesel prices (revised twice monthly) and NEPRA export rates — should be verified before making any financial commitment.</p>
@@ -588,6 +610,7 @@
   <div class="highlight-box warning" style="margin-top:12px">
     <p><strong>Policy risk to keep in mind:</strong> Pakistan's regulatory environment for solar has changed materially twice in 18 months (proposed cuts in 2024, abolition in Feb 2026). IEEFA warns further changes are possible. The most resilient option is to design for <strong>maximum self-consumption</strong> — meaning either Option 3 (batteries store solar for night use) or, if choosing Option 1, focusing on managing consumption to overlap with solar generation hours. Relying on export income is a regulatory risk.</p>
   </div>
+  <a href="#intro" class="back-top">↑ Back to top</a>
 </section>
 
 <!-- ── QUESTIONS CHECKLIST ───────────────────────────────── -->
@@ -653,6 +676,7 @@
       </div>
     </li>
   </ol>
+  <a href="#intro" class="back-top">↑ Back to top</a>
 </section>
 
 <!-- ── CALCULATOR ─────────────────────────────────────────── -->
@@ -786,6 +810,7 @@
       <div class="owner-net-val" id="r-owner-net">—</div>
     </div>
   </div>
+  <a href="#intro" class="back-top">↑ Back to top</a>
 </section>
 
 <div class="divider"><div class="divider-diamond"></div></div>
@@ -870,6 +895,7 @@
   <p class="text-muted" style="margin-top:8px">Either way, energy is one of the largest costs on the farm. Solar has the potential to dramatically reduce both.</p>
 
   <p class="text-muted" style="margin-top:8px; font-style:italic;">Note: we do not yet know how much of the 13,000 litres goes specifically to generators vs. other uses (farm vehicles, heating, etc.). See Question 3 in the checklist below.</p>
+  <a href="#intro" class="back-top">↑ Back to top</a>
 </section>
 
 <!-- ── SOLAR PRODUCTION ───────────────────────────────────── -->
@@ -913,6 +939,7 @@
   <div class="highlight-box warning" style="margin-top:10px">
     <p><strong>⚠️ Soiling warning for Faisalabad:</strong> Panels in Faisalabad's dusty industrial environment can lose 10–25% of output without regular cleaning. One study found 61% performance loss with heavy soiling. Farm staff should clean panels with water and a soft brush <strong>every 10–15 days</strong> during dry season. Without cleaning, payback periods extend significantly. <span class="src src-est">Soiling research</span></p>
   </div>
+  <a href="#intro" class="back-top">↑ Back to top</a>
 </section>
 
 <!-- ── POLICY CHANGE ──────────────────────────────────────── -->
@@ -940,6 +967,7 @@
   <div class="highlight-box gold" style="margin-top:12px">
     <p>🐓 <strong>Action required before deciding:</strong> Contact FESCO immediately to confirm whether the farm already holds a net metering agreement (from a previous application or the current installer's quotes). If you have a valid grandfathered agreement at ₨27/unit, the economics are much better. If not, all calculations should use the new ₨11.30 rate. This single factor can change annual savings by <strong>15–20 lakh PKR per year</strong>.</p>
   </div>
+  <a href="#intro" class="back-top">↑ Back to top</a>
 </section>
 
 <!-- ── ANNUAL SAVINGS ─────────────────────────────────────── -->
@@ -997,6 +1025,7 @@
   <div class="highlight-box" style="margin-top:10px">
     <p><strong>With batteries (Option 3):</strong> More solar is used directly (less export needed); diesel savings jump to ~70–80% reduction (generators rarely needed). Total savings could reach ₨85–100 lakh/year. But the battery system cost is ₨2 crore and batteries need replacing every 10–12 years at unknown cost. <span class="src src-warn">ask installer for battery replacement quote</span></p>
   </div>
+  <a href="#intro" class="back-top">↑ Back to top</a>
 </section>
 
 <!-- ── THREE OPTIONS ──────────────────────────────────────── -->
@@ -1077,6 +1106,7 @@
   </div>
 
   <p class="text-muted" style="margin-top:10px">⚠️ Option 2 carries a specific biological risk: if clouds coincide with grid outage, ventilation fans stop and birds can die from heat stress within hours in Faisalabad's summer temperatures (45°C+). This is not hypothetical — it is documented in poultry energy literature.</p>
+  <a href="#intro" class="back-top">↑ Back to top</a>
 </section>
 
 <!-- ── FINANCING DEAL ─────────────────────────────────────── -->
@@ -1114,6 +1144,7 @@
     <p>✅ <strong>Owns the solar asset</strong> (worth ₨1 crore+ at today's prices)</p>
     <p>✅ Can renegotiate rent <strong>upward</strong> — the farm now has its own power infrastructure, which adds value to the land</p>
   </div>
+  <a href="#intro" class="back-top">↑ Back to top</a>
 </section>
 
 <!-- ── EXPERT VIEWS ───────────────────────────────────────── -->
@@ -1139,6 +1170,7 @@
     <div class="expert-tag">Grid reliability context ★★★</div>
     <p>FESCO (Faisalabad Electric Supply Company) operates a feeder classification system: high-recovery feeders receive near-zero load shedding; low-recovery feeders face 8–12 hours/day. Commercial agricultural feeders typically fall in the middle. Your specific feeder (New Khanuana 101204) can be checked at <a href="https://ccms.pitc.com.pk/FeederDetails" target="_blank">ccms.pitc.com.pk</a>. This data is essential: if load shedding is primarily at night, solar's impact on diesel costs is lower than assumed. If it's mostly daytime, solar is far more valuable.</p>
   </div>
+  <a href="#intro" class="back-top">↑ Back to top</a>
 </section>
 
 <!-- ── SENSITIVITY TABLE ──────────────────────────────────── -->
@@ -1166,6 +1198,7 @@
     </table>
   </div>
   <p class="text-muted" style="margin-top:8px">These numbers update when you change the calculator inputs above.</p>
+  <a href="#intro" class="back-top">↑ Back to top</a>
 </section>
 
 <!-- ── SOURCES ─────────────────────────────────────────────── -->
