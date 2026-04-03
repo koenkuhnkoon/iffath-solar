@@ -534,9 +534,262 @@
 <!-- ── HOW TO USE ────────────────────────────────────────── -->
 <section class="card" id="intro">
   <h2>How to Read This Guide</h2>
-  <p>This document combines <strong>actual farm data</strong> (real electricity bills, confirmed diesel prices) with clearly labelled estimates and unknowns. Every number carries a badge: <span class="src">actual bill</span> means it comes directly from your FESCO bill; <span class="src src-est">estimated</span> means it's a reasonable assumption; <span class="src src-warn">ask installer</span> means you need a quote before relying on that number.</p>
-  <p>The interactive calculator at the bottom lets you change any assumption and see how the results shift. A <strong>checklist of 8 questions</strong> tells you exactly what to verify before committing.</p>
+  <p>This document helps the owner and partners of Iffath Poultry Farm decide whether to install a 100 kW solar system — and if so, which of three options makes the most sense. It is built on <strong>actual farm data</strong> (real FESCO electricity bills, confirmed OGRA diesel prices, real installer quotes) combined with clearly labelled estimates and gaps. Every number carries a small badge so you always know what you are looking at:</p>
+  <p style="margin:10px 0 6px"><span class="src src-bill">actual bill</span> data taken directly from your FESCO bill &nbsp;·&nbsp; <span class="src">OGRA / NEPRA</span> confirmed from official government sources &nbsp;·&nbsp; <span class="src src-est">estimated</span> a reasonable assumption — check with the calculator &nbsp;·&nbsp; <span class="src src-warn">ask installer</span> a number you must get quoted before committing</p>
+
+  <h3 style="margin:18px 0 10px; font-family:Georgia,serif; font-size:1rem; color:#5D4037;">What's in this guide</h3>
+  <table style="font-size:0.88rem">
+    <thead><tr><th>#</th><th>Section</th><th>What you'll find</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td><strong>The Verdict</strong></td><td>The recommendation for each option — start here if you're in a hurry</td></tr>
+      <tr><td>2</td><td><strong>8 Questions to Verify</strong></td><td>Specific gaps that must be answered before signing anything</td></tr>
+      <tr><td>3</td><td><strong>Interactive Calculator</strong></td><td>Adjust any assumption (diesel price, export rate, etc.) and see live results</td></tr>
+      <tr><td>4</td><td><strong>Current Energy Costs</strong></td><td>Actual FESCO bill data and diesel spend — the baseline the solar must beat</td></tr>
+      <tr><td>5</td><td><strong>What Solar Produces</strong></td><td>Realistic output for 100 kW in Faisalabad's climate, after losses and soiling</td></tr>
+      <tr><td>6</td><td><strong>Net Billing Policy Change</strong></td><td>The February 2026 rule change that cut export rates — and why it matters</td></tr>
+      <tr><td>7</td><td><strong>Estimated Annual Savings</strong></td><td>Step-by-step savings calculation with all assumptions shown</td></tr>
+      <tr><td>8</td><td><strong>Three Options Compared</strong></td><td>Side-by-side table: costs, reliability, risks, hidden future costs</td></tr>
+      <tr><td>9</td><td><strong>The Financing Deal</strong></td><td>Does forgoing one house's rent make financial sense for the owner?</td></tr>
+      <tr><td>10</td><td><strong>What the Research Says</strong></td><td>IEEFA, Cambridge journal, and a note on the absence of published case studies</td></tr>
+      <tr><td>11</td><td><strong>Rising Energy Prices</strong></td><td>10-year sensitivity table at 0%, 5%, 10%, 15%, 20% annual escalation</td></tr>
+      <tr><td>12</td><td><strong>Sources &amp; Methodology</strong></td><td>Every claim traceable, with credibility ratings</td></tr>
+    </tbody>
+  </table>
+  <p class="text-muted" style="margin-top:10px">This guide was prepared in April 2026. Key inputs — especially OGRA diesel prices (revised twice monthly) and NEPRA export rates — should be verified before making any financial commitment.</p>
 </section>
+
+<!-- ── RECOMMENDATION (top) ───────────────────────────────── -->
+<section class="card card-recommendation" id="recommendation">
+  <h2>The Verdict</h2>
+
+  <div class="verdict-grid">
+    <div class="verdict-card yes">
+      <div class="badge">✅</div>
+      <div class="v-title">Option 1 — On-grid</div>
+      <div class="v-sub">Financially sound. Low risk for the owner's cash position. Proceed once net metering question is confirmed and generator–inverter integration is validated.</div>
+    </div>
+    <div class="verdict-card caution">
+      <div class="badge">⚠️</div>
+      <div class="v-title">Option 3 — Hybrid + Battery</div>
+      <div class="v-sub">Better operationally, but do not commit until battery replacement cost is quoted. At ₨2 crore plus unknown battery cycles, long-term economics need a full 25-year model.</div>
+    </div>
+    <div class="verdict-card no">
+      <div class="badge">❌</div>
+      <div class="v-title">Option 2 — Hybrid (no battery)</div>
+      <div class="v-sub">Not recommended. The cloudy-day + grid-outage failure mode is a real biological risk for a poultry operation. The cost saving vs. Option 1 (₨17 lakh) does not justify the downside.</div>
+    </div>
+  </div>
+
+  <div class="highlight-box" style="margin-top:18px">
+    <p><strong>For the owner specifically:</strong> The financing deal is favourable. Under conservative assumptions, your 50% share of energy savings roughly equals the rent you forgo during the repayment period — meaning the solar transition costs you almost nothing in the near term, while after 40 months (Option 1) you own a ₨1 crore asset and your rent income is fully restored. Rising energy prices make the deal progressively better over time.</p>
+    <p style="margin-top:8px"><strong>Most important single action:</strong> Confirm with FESCO whether the farm has or can obtain a grandfathered ₨27/unit net metering agreement. If yes, Option 1 becomes even more attractive. If no, the ₨11.30/unit rate still produces a positive case — but the export revenue is substantially lower.</p>
+  </div>
+
+  <div class="highlight-box warning" style="margin-top:12px">
+    <p><strong>Policy risk to keep in mind:</strong> Pakistan's regulatory environment for solar has changed materially twice in 18 months (proposed cuts in 2024, abolition in Feb 2026). IEEFA warns further changes are possible. The most resilient option is to design for <strong>maximum self-consumption</strong> — meaning either Option 3 (batteries store solar for night use) or, if choosing Option 1, focusing on managing consumption to overlap with solar generation hours. Relying on export income is a regulatory risk.</p>
+  </div>
+</section>
+
+<!-- ── QUESTIONS CHECKLIST ───────────────────────────────── -->
+<section class="card card-questions" id="questions">
+  <h2>🐓 8 Questions to Verify Before Deciding</h2>
+  <p>These are the specific gaps in our data. Until these are answered, the numbers above carry material uncertainty.</p>
+
+  <ol class="checklist">
+    <li>
+      <span class="q-num">1</span>
+      <div class="q-body">
+        <strong>Does the farm already hold a FESCO net metering agreement?</strong>
+        <p>If yes: what rate (₨27/unit grandfathered, or ₨11.30 new billing) and when does it expire? A grandfathered ₨27 agreement changes annual savings by <strong>up to ₨15–20 lakh/year</strong>. Contact FESCO's net metering office or your installer to check. <span class="src src-warn">urgent — verify before signing</span></p>
+      </div>
+    </li>
+    <li>
+      <span class="q-num">2</span>
+      <div class="q-body">
+        <strong>How many hours per day is your feeder blacked out, and at what times (day or night)?</strong>
+        <p>This drives both how much diesel is saved and how often the generator must run. Check the PITC load management portal: <a href="https://ccms.pitc.com.pk/FeederDetails" target="_blank">ccms.pitc.com.pk/FeederDetails</a> — select Faisalabad, your grid station, and feeder "New Khanuana". <span class="src src-est">currently assumed 35% diesel reduction</span></p>
+      </div>
+    </li>
+    <li>
+      <span class="q-num">3</span>
+      <div class="q-body">
+        <strong>Of the 13,000 litres of diesel per year, how much is specifically for generators vs. other uses?</strong>
+        <p>If some diesel is for farm vehicles or other equipment, the solar-driven savings calculation needs adjusting. Our model assumes 100% of the diesel is for generator backup. <span class="src src-est">assumed 100% generator</span></p>
+      </div>
+    </li>
+    <li>
+      <span class="q-num">4</span>
+      <div class="q-body">
+        <strong>What is the total south-facing, unobstructed roof area across both sheds?</strong>
+        <p>A 100 kW system needs approximately 500–600 m² of usable roof. Confirm with the installer that the roof can structurally hold the system weight (~200–300 kg for panels + mounting). Roof strengthening could add ₨15–25 lakh. <span class="src src-warn">ask installer for structural assessment</span></p>
+      </div>
+    </li>
+    <li>
+      <span class="q-num">5</span>
+      <div class="q-body">
+        <strong>What is the battery bank replacement cost after 10–12 years for Option 3?</strong>
+        <p>Lithium batteries in Pakistan's hot climate (40°C+ summers) degrade faster than in cooler regions. A 25-year panel life means 2 battery replacement cycles. Without this number, Option 3's true 25-year cost cannot be calculated. <span class="src src-warn">critical gap for Option 3</span></p>
+      </div>
+    </li>
+    <li>
+      <span class="q-num">6</span>
+      <div class="q-body">
+        <strong>What does the generator–inverter integration software for Option 1 cost, and who provides ongoing support?</strong>
+        <p>The installer proposed third-party software to link the 60 kW generator to the on-grid inverter. Ask for: the software vendor name, annual support cost, warranty terms, and whether the inverter warranty remains valid with this modification. <span class="src src-warn">reliability risk</span></p>
+      </div>
+    </li>
+    <li>
+      <span class="q-num">7</span>
+      <div class="q-body">
+        <strong>Does the installer's quote include or exclude the potential 18% GST on imported solar panels?</strong>
+        <p>Pakistan is considering 18% GST on imported panels (proposal pending as of April 2026). If applied after you sign, the cost could increase by ₨8–15 lakh. Request a price-locked quote and ask specifically whether they'll absorb any future GST change. <span class="src src-warn">regulatory risk</span></p>
+      </div>
+    </li>
+    <li>
+      <span class="q-num">8</span>
+      <div class="q-body">
+        <strong>What is the actual peak simultaneous electrical load of both sheds at full capacity?</strong>
+        <p>The electricity bills show a maximum MDI of 64 kW (grid peak demand, October 2025). But during load shedding when the generator runs both sheds, what is the total peak kW requirement? If it exceeds 60 kW (generator capacity), there is already a supply gap — solar may help address it. <span class="src src-est">max grid MDI = 64 kW from bills</span></p>
+      </div>
+    </li>
+  </ol>
+</section>
+
+<!-- ── CALCULATOR ─────────────────────────────────────────── -->
+<section class="card card-calculator" id="calculator">
+  <h2>🔢 Interactive Calculator</h2>
+  <p class="no-print text-muted">Adjust the assumptions below. All results update automatically. Numbers are in Pakistani Rupees (PKR).</p>
+
+  <div class="calc-grid">
+    <div class="calc-field">
+      <label>Diesel price (₨/litre) <span class="src">OGRA</span></label>
+      <div class="range-row">
+        <input type="range" id="i-diesel-price" min="200" max="700" step="5" value="520" oninput="syncVal(this,'v-diesel-price');calculate()">
+        <span class="range-val" id="v-diesel-price">₨520</span>
+      </div>
+      <span class="text-muted" style="font-size:0.75rem">Pre-April 3: ₨336 &nbsp;|&nbsp; Post-April 3: ₨520</span>
+    </div>
+
+    <div class="calc-field">
+      <label>Annual diesel (litres) <span class="src src-bill">owner's notes</span></label>
+      <div class="range-row">
+        <input type="range" id="i-diesel-litres" min="5000" max="25000" step="500" value="13000" oninput="syncVal(this,'v-diesel-litres');calculate()">
+        <span class="range-val" id="v-diesel-litres">13,000 L</span>
+      </div>
+    </div>
+
+    <div class="calc-field">
+      <label>Self-consumption ratio <span class="src src-est">estimated</span></label>
+      <div class="range-row">
+        <input type="range" id="i-self-consume" min="20" max="80" step="5" value="40" oninput="syncVal(this,'v-self-consume');calculate()">
+        <span class="range-val" id="v-self-consume">40%</span>
+      </div>
+      <span class="text-muted" style="font-size:0.75rem">% of solar used directly (not exported)</span>
+    </div>
+
+    <div class="calc-field">
+      <label>Export rate (₨/unit) <span class="src">NEPRA</span></label>
+      <div class="range-row">
+        <input type="range" id="i-export-rate" min="5" max="30" step="0.5" value="11.3" oninput="syncVal(this,'v-export-rate');calculate()">
+        <span class="range-val" id="v-export-rate">₨11.3</span>
+      </div>
+      <span class="text-muted" style="font-size:0.75rem">New: ₨11.3 &nbsp;|&nbsp; Grandfathered: ₨27</span>
+    </div>
+
+    <div class="calc-field">
+      <label>Diesel reduction — Options 1 &amp; 2 <span class="src src-est">estimated</span></label>
+      <div class="range-row">
+        <input type="range" id="i-diesel-red-ongrid" min="5" max="80" step="5" value="35" oninput="syncVal(this,'v-diesel-red-ongrid');calculate()">
+        <span class="range-val" id="v-diesel-red-ongrid">35%</span>
+      </div>
+    </div>
+
+    <div class="calc-field">
+      <label>Diesel reduction — Option 3 (battery) <span class="src src-est">estimated</span></label>
+      <div class="range-row">
+        <input type="range" id="i-diesel-red-battery" min="10" max="95" step="5" value="75" oninput="syncVal(this,'v-diesel-red-battery');calculate()">
+        <span class="range-val" id="v-diesel-red-battery">75%</span>
+      </div>
+    </div>
+
+    <div class="calc-field">
+      <label>Annual energy price escalation <span class="src src-est">assumption</span></label>
+      <div class="range-row">
+        <input type="range" id="i-escalation" min="0" max="25" step="1" value="10" oninput="syncVal(this,'v-escalation');calculate()">
+        <span class="range-val" id="v-escalation">10%/yr</span>
+      </div>
+    </div>
+
+    <div class="calc-field">
+      <label>Battery replacement cost (Option 3) <span class="src src-warn">ask installer</span></label>
+      <div class="range-row">
+        <input type="range" id="i-battery-replacement" min="1000000" max="15000000" step="500000" value="5000000" oninput="syncVal(this,'v-battery-replacement');calculate()">
+        <span class="range-val" id="v-battery-replacement">₨50L</span>
+      </div>
+      <span class="text-muted" style="font-size:0.75rem">Highly uncertain — get an installer quote</span>
+    </div>
+  </div>
+
+  <div class="calc-results">
+    <h3>Results at current settings</h3>
+    <p style="font-size:0.8rem; opacity:0.75; margin-bottom:12px">Solar output: <span id="r-solar-net">—</span> kWh/yr &nbsp;|&nbsp; Self-consumed: <span id="r-self-consumed">—</span> kWh &nbsp;|&nbsp; Exported: <span id="r-exported">—</span> kWh</p>
+    <div class="results-grid">
+      <div class="result-card opt1">
+        <div class="opt-label">Option 1 — On-grid</div>
+        <div class="metric">
+          <div class="metric-label">Annual savings</div>
+          <div class="metric-val" id="r-sav-1">—</div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">Payback via rent</div>
+          <div class="metric-val" id="r-pb-1">—</div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">10-yr cumulative savings</div>
+          <div class="metric-val" id="r-ty-1">—</div>
+        </div>
+      </div>
+      <div class="result-card opt2">
+        <div class="opt-label">Option 2 — Hybrid (no battery)</div>
+        <div class="metric">
+          <div class="metric-label">Annual savings</div>
+          <div class="metric-val" id="r-sav-2">—</div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">Payback via rent</div>
+          <div class="metric-val" id="r-pb-2">—</div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">10-yr cumulative savings</div>
+          <div class="metric-val" id="r-ty-2">—</div>
+        </div>
+      </div>
+      <div class="result-card opt3">
+        <div class="opt-label">Option 3 — Hybrid + Battery</div>
+        <div class="metric">
+          <div class="metric-label">Annual savings</div>
+          <div class="metric-val" id="r-sav-3">—</div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">Payback via rent</div>
+          <div class="metric-val" id="r-pb-3">—</div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">10-yr net (after battery repl.)</div>
+          <div class="metric-val" id="r-ty-3">—</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="owner-net-box">
+      <div class="label">Owner's monthly net position during repayment (Option 1) — 50% of savings minus ₨2.5L rent foregone</div>
+      <div class="owner-net-val" id="r-owner-net">—</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><div class="divider-diamond"></div></div>
+<p class="text-muted" style="text-align:center; margin:-10px 0 20px; font-size:0.82rem">↓ Detailed analysis below — supporting data and methodology for all figures above</p>
 
 <!-- ── CURRENT ENERGY COSTS ──────────────────────────────── -->
 <section class="card" id="current-costs">
@@ -863,204 +1116,6 @@
   </div>
 </section>
 
-<!-- ── QUESTIONS CHECKLIST ───────────────────────────────── -->
-<section class="card card-questions" id="questions">
-  <h2>🐓 8 Questions to Verify Before Deciding</h2>
-  <p>These are the specific gaps in our data. Until these are answered, the numbers above carry material uncertainty.</p>
-
-  <ol class="checklist">
-    <li>
-      <span class="q-num">1</span>
-      <div class="q-body">
-        <strong>Does the farm already hold a FESCO net metering agreement?</strong>
-        <p>If yes: what rate (₨27/unit grandfathered, or ₨11.30 new billing) and when does it expire? A grandfathered ₨27 agreement changes annual savings by <strong>up to ₨15–20 lakh/year</strong>. Contact FESCO's net metering office or your installer to check. <span class="src src-warn">urgent — verify before signing</span></p>
-      </div>
-    </li>
-    <li>
-      <span class="q-num">2</span>
-      <div class="q-body">
-        <strong>How many hours per day is your feeder blacked out, and at what times (day or night)?</strong>
-        <p>This drives both how much diesel is saved and how often the generator must run. Check the PITC load management portal: <a href="https://ccms.pitc.com.pk/FeederDetails" target="_blank">ccms.pitc.com.pk/FeederDetails</a> — select Faisalabad, your grid station, and feeder "New Khanuana". <span class="src src-est">currently assumed 35% diesel reduction</span></p>
-      </div>
-    </li>
-    <li>
-      <span class="q-num">3</span>
-      <div class="q-body">
-        <strong>Of the 13,000 litres of diesel per year, how much is specifically for generators vs. other uses?</strong>
-        <p>If some diesel is for farm vehicles or other equipment, the solar-driven savings calculation needs adjusting. Our model assumes 100% of the diesel is for generator backup. <span class="src src-est">assumed 100% generator</span></p>
-      </div>
-    </li>
-    <li>
-      <span class="q-num">4</span>
-      <div class="q-body">
-        <strong>What is the total south-facing, unobstructed roof area across both sheds?</strong>
-        <p>A 100 kW system needs approximately 500–600 m² of usable roof. Confirm with the installer that the roof can structurally hold the system weight (~200–300 kg for panels + mounting). Roof strengthening could add ₨15–25 lakh. <span class="src src-warn">ask installer for structural assessment</span></p>
-      </div>
-    </li>
-    <li>
-      <span class="q-num">5</span>
-      <div class="q-body">
-        <strong>What is the battery bank replacement cost after 10–12 years for Option 3?</strong>
-        <p>Lithium batteries in Pakistan's hot climate (40°C+ summers) degrade faster than in cooler regions. A 25-year panel life means 2 battery replacement cycles. Without this number, Option 3's true 25-year cost cannot be calculated. <span class="src src-warn">critical gap for Option 3</span></p>
-      </div>
-    </li>
-    <li>
-      <span class="q-num">6</span>
-      <div class="q-body">
-        <strong>What does the generator–inverter integration software for Option 1 cost, and who provides ongoing support?</strong>
-        <p>The installer proposed third-party software to link the 60 kW generator to the on-grid inverter. Ask for: the software vendor name, annual support cost, warranty terms, and whether the inverter warranty remains valid with this modification. <span class="src src-warn">reliability risk</span></p>
-      </div>
-    </li>
-    <li>
-      <span class="q-num">7</span>
-      <div class="q-body">
-        <strong>Does the installer's quote include or exclude the potential 18% GST on imported solar panels?</strong>
-        <p>Pakistan is considering 18% GST on imported panels (proposal pending as of April 2026). If applied after you sign, the cost could increase by ₨8–15 lakh. Request a price-locked quote and ask specifically whether they'll absorb any future GST change. <span class="src src-warn">regulatory risk</span></p>
-      </div>
-    </li>
-    <li>
-      <span class="q-num">8</span>
-      <div class="q-body">
-        <strong>What is the actual peak simultaneous electrical load of both sheds at full capacity?</strong>
-        <p>The electricity bills show a maximum MDI of 64 kW (grid peak demand, October 2025). But during load shedding when the generator runs both sheds, what is the total peak kW requirement? If it exceeds 60 kW (generator capacity), there is already a supply gap — solar may help address it. <span class="src src-est">max grid MDI = 64 kW from bills</span></p>
-      </div>
-    </li>
-  </ol>
-</section>
-
-<!-- ── CALCULATOR ─────────────────────────────────────────── -->
-<section class="card card-calculator" id="calculator">
-  <h2>🔢 Interactive Calculator</h2>
-  <p class="no-print text-muted">Adjust the assumptions below. All results update automatically. Numbers are in Pakistani Rupees (PKR).</p>
-
-  <div class="calc-grid">
-    <div class="calc-field">
-      <label>Diesel price (₨/litre) <span class="src">OGRA</span></label>
-      <div class="range-row">
-        <input type="range" id="i-diesel-price" min="200" max="700" step="5" value="520" oninput="syncVal(this,'v-diesel-price');calculate()">
-        <span class="range-val" id="v-diesel-price">₨520</span>
-      </div>
-      <span class="text-muted" style="font-size:0.75rem">Pre-April 3: ₨336 &nbsp;|&nbsp; Post-April 3: ₨520</span>
-    </div>
-
-    <div class="calc-field">
-      <label>Annual diesel (litres) <span class="src src-bill">owner's notes</span></label>
-      <div class="range-row">
-        <input type="range" id="i-diesel-litres" min="5000" max="25000" step="500" value="13000" oninput="syncVal(this,'v-diesel-litres');calculate()">
-        <span class="range-val" id="v-diesel-litres">13,000 L</span>
-      </div>
-    </div>
-
-    <div class="calc-field">
-      <label>Self-consumption ratio <span class="src src-est">estimated</span></label>
-      <div class="range-row">
-        <input type="range" id="i-self-consume" min="20" max="80" step="5" value="40" oninput="syncVal(this,'v-self-consume');calculate()">
-        <span class="range-val" id="v-self-consume">40%</span>
-      </div>
-      <span class="text-muted" style="font-size:0.75rem">% of solar used directly (not exported)</span>
-    </div>
-
-    <div class="calc-field">
-      <label>Export rate (₨/unit) <span class="src">NEPRA</span></label>
-      <div class="range-row">
-        <input type="range" id="i-export-rate" min="5" max="30" step="0.5" value="11.3" oninput="syncVal(this,'v-export-rate');calculate()">
-        <span class="range-val" id="v-export-rate">₨11.3</span>
-      </div>
-      <span class="text-muted" style="font-size:0.75rem">New: ₨11.3 &nbsp;|&nbsp; Grandfathered: ₨27</span>
-    </div>
-
-    <div class="calc-field">
-      <label>Diesel reduction — Options 1 &amp; 2 <span class="src src-est">estimated</span></label>
-      <div class="range-row">
-        <input type="range" id="i-diesel-red-ongrid" min="5" max="80" step="5" value="35" oninput="syncVal(this,'v-diesel-red-ongrid');calculate()">
-        <span class="range-val" id="v-diesel-red-ongrid">35%</span>
-      </div>
-    </div>
-
-    <div class="calc-field">
-      <label>Diesel reduction — Option 3 (battery) <span class="src src-est">estimated</span></label>
-      <div class="range-row">
-        <input type="range" id="i-diesel-red-battery" min="10" max="95" step="5" value="75" oninput="syncVal(this,'v-diesel-red-battery');calculate()">
-        <span class="range-val" id="v-diesel-red-battery">75%</span>
-      </div>
-    </div>
-
-    <div class="calc-field">
-      <label>Annual energy price escalation <span class="src src-est">assumption</span></label>
-      <div class="range-row">
-        <input type="range" id="i-escalation" min="0" max="25" step="1" value="10" oninput="syncVal(this,'v-escalation');calculate()">
-        <span class="range-val" id="v-escalation">10%/yr</span>
-      </div>
-    </div>
-
-    <div class="calc-field">
-      <label>Battery replacement cost (Option 3) <span class="src src-warn">ask installer</span></label>
-      <div class="range-row">
-        <input type="range" id="i-battery-replacement" min="1000000" max="15000000" step="500000" value="5000000" oninput="syncVal(this,'v-battery-replacement');calculate()">
-        <span class="range-val" id="v-battery-replacement">₨50L</span>
-      </div>
-      <span class="text-muted" style="font-size:0.75rem">Highly uncertain — get an installer quote</span>
-    </div>
-  </div>
-
-  <div class="calc-results">
-    <h3>Results at current settings</h3>
-    <p style="font-size:0.8rem; opacity:0.75; margin-bottom:12px">Solar output: <span id="r-solar-net">—</span> kWh/yr &nbsp;|&nbsp; Self-consumed: <span id="r-self-consumed">—</span> kWh &nbsp;|&nbsp; Exported: <span id="r-exported">—</span> kWh</p>
-    <div class="results-grid">
-      <div class="result-card opt1">
-        <div class="opt-label">Option 1 — On-grid</div>
-        <div class="metric">
-          <div class="metric-label">Annual savings</div>
-          <div class="metric-val" id="r-sav-1">—</div>
-        </div>
-        <div class="metric">
-          <div class="metric-label">Payback via rent</div>
-          <div class="metric-val" id="r-pb-1">—</div>
-        </div>
-        <div class="metric">
-          <div class="metric-label">10-yr cumulative savings</div>
-          <div class="metric-val" id="r-ty-1">—</div>
-        </div>
-      </div>
-      <div class="result-card opt2">
-        <div class="opt-label">Option 2 — Hybrid (no battery)</div>
-        <div class="metric">
-          <div class="metric-label">Annual savings</div>
-          <div class="metric-val" id="r-sav-2">—</div>
-        </div>
-        <div class="metric">
-          <div class="metric-label">Payback via rent</div>
-          <div class="metric-val" id="r-pb-2">—</div>
-        </div>
-        <div class="metric">
-          <div class="metric-label">10-yr cumulative savings</div>
-          <div class="metric-val" id="r-ty-2">—</div>
-        </div>
-      </div>
-      <div class="result-card opt3">
-        <div class="opt-label">Option 3 — Hybrid + Battery</div>
-        <div class="metric">
-          <div class="metric-label">Annual savings</div>
-          <div class="metric-val" id="r-sav-3">—</div>
-        </div>
-        <div class="metric">
-          <div class="metric-label">Payback via rent</div>
-          <div class="metric-val" id="r-pb-3">—</div>
-        </div>
-        <div class="metric">
-          <div class="metric-label">10-yr net (after battery repl.)</div>
-          <div class="metric-val" id="r-ty-3">—</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="owner-net-box">
-      <div class="label">Owner's monthly net position during repayment (Option 1) — 50% of savings minus ₨2.5L rent foregone</div>
-      <div class="owner-net-val" id="r-owner-net">—</div>
-    </div>
-  </div>
-</section>
-
 <!-- ── EXPERT VIEWS ───────────────────────────────────────── -->
 <section class="card" id="experts">
   <h2>What the Research Says</h2>
@@ -1111,38 +1166,6 @@
     </table>
   </div>
   <p class="text-muted" style="margin-top:8px">These numbers update when you change the calculator inputs above.</p>
-</section>
-
-<!-- ── RECOMMENDATION ────────────────────────────────────────── -->
-<section class="card card-recommendation" id="recommendation">
-  <h2>The Verdict</h2>
-
-  <div class="verdict-grid">
-    <div class="verdict-card yes">
-      <div class="badge">✅</div>
-      <div class="v-title">Option 1 — On-grid</div>
-      <div class="v-sub">Financially sound. Low risk for the owner's cash position. Proceed once net metering question is confirmed and generator–inverter integration is validated.</div>
-    </div>
-    <div class="verdict-card caution">
-      <div class="badge">⚠️</div>
-      <div class="v-title">Option 3 — Hybrid + Battery</div>
-      <div class="v-sub">Better operationally, but do not commit until battery replacement cost is quoted. At ₨2 crore plus unknown battery cycles, long-term economics need a full 25-year model.</div>
-    </div>
-    <div class="verdict-card no">
-      <div class="badge">❌</div>
-      <div class="v-title">Option 2 — Hybrid (no battery)</div>
-      <div class="v-sub">Not recommended. The cloudy-day + grid-outage failure mode is a real biological risk for a poultry operation. The cost saving vs. Option 1 (₨17 lakh) does not justify the downside.</div>
-    </div>
-  </div>
-
-  <div class="highlight-box" style="margin-top:18px">
-    <p><strong>For the owner specifically:</strong> The financing deal is favourable. Under conservative assumptions, your 50% share of energy savings roughly equals the rent you forgo during the repayment period — meaning the solar transition costs you almost nothing in the near term, while after 40 months (Option 1) you own a ₨1 crore asset and your rent income is fully restored. Rising energy prices make the deal progressively better over time.</p>
-    <p style="margin-top:8px"><strong>Most important single action:</strong> Confirm with FESCO whether the farm has or can obtain a grandfathered ₨27/unit net metering agreement. If yes, Option 1 becomes even more attractive. If no, the ₨11.30/unit rate still produces a positive case — but the export revenue is substantially lower.</p>
-  </div>
-
-  <div class="highlight-box warning" style="margin-top:12px">
-    <p><strong>Policy risk to keep in mind:</strong> Pakistan's regulatory environment for solar has changed materially twice in 18 months (proposed cuts in 2024, abolition in Feb 2026). IEEFA warns further changes are possible. The most resilient option is to design for <strong>maximum self-consumption</strong> — meaning either Option 3 (batteries store solar for night use) or, if choosing Option 1, focusing on managing consumption to overlap with solar generation hours. Relying on export income is a regulatory risk.</p>
-  </div>
 </section>
 
 <!-- ── SOURCES ─────────────────────────────────────────────── -->
