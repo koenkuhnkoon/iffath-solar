@@ -36,6 +36,8 @@ These numbers come from the real FESCO electricity bill (Dec 2024–Nov 2025) an
 | `COST_HYBRID_NB` | ₨11,700,000 | Installer quote (1.17 crore) |
 | `COST_HYBRID_B` | ₨20,000,000 | Installer quote (2 crore) |
 | `RENT_FOREGONE` | ₨250,000/month | Owner's notes |
+| `DIESEL_GENERATOR` | 7,000 L/yr | Owner's notes — generator backup (solar-saveable) |
+| `DIESEL_BROODER` | 6,000 L/yr | Owner's notes — brooder heaters, winter nights (NOT solar-saveable) |
 | `SOLAR_KW` | 100 kWp | Installer quote |
 | `PEAK_SUN_HOURS` | 5.26 hrs/day | NASA POWER via ProfileSolar.com |
 | `SYSTEM_EFFICIENCY` | 0.80 | Industry standard |
@@ -73,7 +75,7 @@ These are the 8 items in the checklist section. As answers come in, update the g
 
 1. **Net metering status** — does the farm have a grandfathered FESCO agreement at ₨27/unit? If yes, update `i-export-rate` default to 27.
 2. **Load shedding hours and timing** — check ccms.pitc.com.pk for feeder "New Khanuana". Update `i-diesel-red-ongrid` default based on actual daytime outage hours.
-3. **Diesel purpose** — how much of 13,000 L/year is specifically for generators? Update `i-diesel-litres` if needed.
+3. **Diesel purpose** — ANSWERED: 7,000 L/yr for generators (solar-saveable, calculator default), 6,000 L/yr for brooder heaters (winter nights, not solar-saveable, excluded from calculator). Do not change these unless owner provides new data.
 4. **Roof area and structural capacity** — can both sheds hold a 100 kW system (~500–600 m²)? Note any structural reinforcement cost.
 5. **Battery replacement quote** — update `i-battery-replacement` default once installer provides a figure.
 6. **Generator–inverter software** — vendor name, annual support cost, warranty impact.

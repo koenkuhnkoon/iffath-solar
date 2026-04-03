@@ -265,6 +265,20 @@
       color: #1B5E20;
       font-size: 0.95rem;
     }
+    .scenario-btn {
+      background: #E8F5E9;
+      border: 1px solid #1B5E20;
+      color: #1B5E20;
+      padding: 4px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.78rem;
+      font-weight: 600;
+      transition: background 0.15s;
+    }
+    .scenario-btn:hover { background: #C8E6C9; }
+    .scenario-btn.active { background: #1B5E20; color: white; }
+
     .calc-results {
       background: #1B5E20;
       border-radius: 8px;
@@ -603,12 +617,13 @@
   </div>
 
   <div class="highlight-box" style="margin-top:18px">
-    <p><strong>For the owner specifically:</strong> The financing deal is favourable. Under conservative assumptions, your 50% share of energy savings roughly equals the rent you forgo during the repayment period — meaning the solar transition costs you almost nothing in the near term, while after 40 months (Option 1) you own a ₨1 crore asset and your rent income is fully restored. Rising energy prices make the deal progressively better over time.</p>
-    <p style="margin-top:8px"><strong>Most important single action:</strong> Confirm with FESCO whether the farm has or can obtain a grandfathered ₨27/unit net metering agreement. If yes, Option 1 becomes even more attractive. If no, the ₨11.30/unit rate still produces a positive case — but the export revenue is substantially lower.</p>
+    <p><strong>For the owner specifically:</strong> Under conservative assumptions (7,000 L generator diesel, ₨11.3/unit export), the owner's 50% share of savings is ~₨2.1 lakh/month against ₨2.5 lakh/month rent foregone — a net cost of roughly <strong>₨40,000/month during the 40-month repayment period</strong>. This is manageable, and rising energy prices (10%/year modelled) make it neutral by Year 2 and positive thereafter. After 40 months you own a ₨1 crore asset and full rent resumes. If the grandfathered ₨27/unit rate applies, the deal turns positive immediately.</p>
+    <p style="margin-top:8px"><strong>Most important single action:</strong> Confirm with FESCO whether the farm has or can obtain a grandfathered ₨27/unit net metering agreement. If yes, Option 1 becomes strongly attractive from Day 1. If no, the ₨11.30/unit rate still produces a viable case — the ₨40k/month shortfall is modest and temporary.</p>
   </div>
 
   <div class="highlight-box warning" style="margin-top:12px">
     <p><strong>Policy risk to keep in mind:</strong> Pakistan's regulatory environment for solar has changed materially twice in 18 months (proposed cuts in 2024, abolition in Feb 2026). IEEFA warns further changes are possible. The most resilient option is to design for <strong>maximum self-consumption</strong> — meaning either Option 3 (batteries store solar for night use) or, if choosing Option 1, focusing on managing consumption to overlap with solar generation hours. Relying on export income is a regulatory risk.</p>
+    <p style="margin-top:8px"><strong>If net metering is cancelled entirely (₨0/unit export):</strong> Use the "No net metering" button in the calculator to model this. Annual savings drop by ~₨9 lakh compared to the ₨11.3 rate. Option 1 remains viable on self-consumption savings alone, but the owner's monthly shortfall rises to ~₨1.2 lakh during repayment. In this scenario, Option 3 (battery) becomes relatively more attractive — batteries maximise self-consumption and eliminate export dependency altogether.</p>
   </div>
   <a href="#intro" class="back-top">↑ Back to top</a>
 </section>
@@ -634,10 +649,10 @@
       </div>
     </li>
     <li>
-      <span class="q-num">3</span>
+      <span class="q-num" style="background:#1B5E20">✓</span>
       <div class="q-body">
-        <strong>Of the 13,000 litres of diesel per year, how much is specifically for generators vs. other uses?</strong>
-        <p>If some diesel is for farm vehicles or other equipment, the solar-driven savings calculation needs adjusting. Our model assumes 100% of the diesel is for generator backup. <span class="src src-est">assumed 100% generator</span></p>
+        <strong>Diesel breakdown — confirmed.</strong>
+        <p>Of the 13,000 litres per year: <strong>7,000 L for generators</strong> (backup during load shedding — solar can reduce this) and <strong>6,000 L for brooder heaters</strong> (winter chick warming, night use — solar cannot replace this). The calculator uses 7,000 L as the solar-saveable baseline. <span class="src src-bill">owner's notes</span></p>
       </div>
     </li>
     <li>
@@ -695,11 +710,12 @@
     </div>
 
     <div class="calc-field">
-      <label>Annual diesel (litres) <span class="src src-bill">owner's notes</span></label>
+      <label>Generator diesel — solar-saveable (litres) <span class="src src-bill">owner's notes</span></label>
       <div class="range-row">
-        <input type="range" id="i-diesel-litres" min="5000" max="25000" step="500" value="13000" oninput="syncVal(this,'v-diesel-litres');calculate()">
-        <span class="range-val" id="v-diesel-litres">13,000 L</span>
+        <input type="range" id="i-diesel-litres" min="1000" max="15000" step="500" value="7000" oninput="syncVal(this,'v-diesel-litres');calculate()">
+        <span class="range-val" id="v-diesel-litres">7,000 L</span>
       </div>
+      <span class="text-muted" style="font-size:0.75rem">Generator backup only. Brooder/heater diesel (6,000 L, winter nights) cannot be saved by solar.</span>
     </div>
 
     <div class="calc-field">
@@ -717,7 +733,12 @@
         <input type="range" id="i-export-rate" min="5" max="30" step="0.5" value="11.3" oninput="syncVal(this,'v-export-rate');calculate()">
         <span class="range-val" id="v-export-rate">₨11.3</span>
       </div>
-      <span class="text-muted" style="font-size:0.75rem">New: ₨11.3 &nbsp;|&nbsp; Grandfathered: ₨27</span>
+      <span class="text-muted" style="font-size:0.75rem">New: ₨11.3 &nbsp;|&nbsp; Grandfathered: ₨27 &nbsp;|&nbsp; Cancelled: ₨0</span>
+      <div style="margin-top:6px; display:flex; gap:6px; flex-wrap:wrap">
+        <button class="scenario-btn" onclick="setScenario(0, this)">No net metering (₨0)</button>
+        <button class="scenario-btn active" id="btn-scenario-113" onclick="setScenario(11.3, this)">Current (₨11.3)</button>
+        <button class="scenario-btn" onclick="setScenario(27, this)">Grandfathered (₨27)</button>
+      </div>
     </div>
 
     <div class="calc-field">
@@ -859,13 +880,20 @@
 
   <div class="divider"><div class="divider-diamond"></div></div>
 
-  <h3 style="margin:0 0 10px; color:#5D4037; font-family:Georgia,serif; font-size:1rem;">Diesel (Generator Backup)</h3>
+  <h3 style="margin:0 0 10px; color:#5D4037; font-family:Georgia,serif; font-size:1rem;">Diesel — Two Separate Uses <span class="src src-bill">owner's notes</span></h3>
   <div class="two-col">
     <div class="stat-box orange">
-      <div class="stat-label">Annual consumption <span class="src src-bill">owner's notes</span></div>
-      <div class="stat-val">13,000 L</div>
-      <div class="stat-sub">High-Speed Diesel per year</div>
+      <div class="stat-label">Generator backup (load shedding)</div>
+      <div class="stat-val">7,000 L/yr</div>
+      <div class="stat-sub">☀️ Solar CAN reduce this — daytime outages covered</div>
     </div>
+    <div class="stat-box" style="background:#E8F5E9; border-left:4px solid #2E7D32">
+      <div class="stat-label">Brooder heaters (winter chick warming)</div>
+      <div class="stat-val">6,000 L/yr</div>
+      <div class="stat-sub">❄️ Winter nights only — solar CANNOT save this</div>
+    </div>
+  </div>
+  <div style="margin-top:10px">
     <div class="stat-box red">
       <div class="stat-label">Diesel price <span class="src">OGRA Apr 3 2026</span></div>
       <div class="stat-val">₨520/L</div>
@@ -874,7 +902,7 @@
   </div>
 
   <div class="highlight-box warning" style="margin-top:14px">
-    <p><strong>⚠️ Diesel price caution:</strong> OGRA raised HSD from ₨335.86 to ₨520.35 per litre on April 3, 2026 — a 55% increase in a single day. This is exceptional and may not hold. The calculator lets you test both price points. Annual diesel cost at ₨520/litre: <strong>₨67.6 lakh</strong>. At ₨336/litre: <strong>₨43.7 lakh</strong>.</p>
+    <p><strong>⚠️ Diesel price caution:</strong> OGRA raised HSD from ₨335.86 to ₨520.35 per litre on April 3, 2026 — a 55% increase in a single day. This is exceptional and may not hold. The calculator lets you test both price points. Total annual diesel cost at ₨520/litre: <strong>₨67.6 lakh</strong> (₨36.4L generators + ₨31.2L brooders). At ₨336/litre: <strong>₨43.7 lakh</strong>. Only the generator portion (₨36.4L) is reducible by solar.</p>
   </div>
 
   <div class="divider"><div class="divider-diamond"></div></div>
@@ -894,7 +922,7 @@
   </div>
   <p class="text-muted" style="margin-top:8px">Either way, energy is one of the largest costs on the farm. Solar has the potential to dramatically reduce both.</p>
 
-  <p class="text-muted" style="margin-top:8px; font-style:italic;">Note: we do not yet know how much of the 13,000 litres goes specifically to generators vs. other uses (farm vehicles, heating, etc.). See Question 3 in the checklist below.</p>
+  <p class="text-muted" style="margin-top:8px"><strong>Important:</strong> Only the 7,000 L of generator diesel can be saved by solar. The 6,000 L used for brooder heaters runs on winter nights when solar produces nothing — this cost cannot be eliminated by any of the three options.</p>
   <a href="#intro" class="back-top">↑ Back to top</a>
 </section>
 
@@ -1008,13 +1036,18 @@
         <td class="num"><strong>38,05,000</strong></td>
       </tr>
       <tr>
-        <td>Diesel: generator use reduced <span class="src src-est">35% reduction, conservative</span></td>
-        <td>4,550 L × ₨520</td>
-        <td class="num">23,66,000</td>
+        <td>Diesel: generator use reduced <span class="src src-est">35% of 7,000 L generator diesel only</span></td>
+        <td>2,450 L × ₨520</td>
+        <td class="num">12,74,000</td>
+      </tr>
+      <tr>
+        <td style="color:#5D4037; font-style:italic">Brooder diesel — not saved by solar</td>
+        <td style="color:#5D4037; font-style:italic">6,000 L, winter nights</td>
+        <td class="num" style="color:#5D4037; font-style:italic">—</td>
       </tr>
     </tbody>
     <tfoot>
-      <tr><td colspan="2"><strong>Total annual savings (conservative)</strong></td><td class="num">~61.7 lakh</td></tr>
+      <tr><td colspan="2"><strong>Total annual savings (conservative)</strong></td><td class="num">~50.8 lakh</td></tr>
     </tfoot>
   </table>
   </div>
@@ -1023,7 +1056,7 @@
     <p><strong>With old net metering (₨27/unit, if grandfathered):</strong> Export revenue rises to ₨82,800 × ₨27 = ₨22.4 lakh, increasing total savings by ~₨13 lakh/year — taking the total to approximately ₨75 lakh/year.</p>
   </div>
   <div class="highlight-box" style="margin-top:10px">
-    <p><strong>With batteries (Option 3):</strong> More solar is used directly (less export needed); diesel savings jump to ~70–80% reduction (generators rarely needed). Total savings could reach ₨85–100 lakh/year. But the battery system cost is ₨2 crore and batteries need replacing every 10–12 years at unknown cost. <span class="src src-warn">ask installer for battery replacement quote</span></p>
+    <p><strong>With batteries (Option 3):</strong> More solar is used directly (less export needed); generator diesel savings jump to ~70–75% of the 7,000 L generator baseline (~₨27 lakh). Total savings could reach ~₨65 lakh/year. Note: brooder heater diesel (6,000 L) remains unsaved regardless of option. Battery system cost is ₨2 crore and batteries need replacing every 10–12 years at unknown cost. <span class="src src-warn">ask installer for battery replacement quote</span></p>
   </div>
   <a href="#intro" class="back-top">↑ Back to top</a>
 </section>
@@ -1241,11 +1274,11 @@
     </div>
     <div class="source-item">
       <strong>Owner's notes (April 2026)</strong> <span class="cred">★★★★</span>
-      <div class="cred-note">Farm description, diesel consumption (13,000 L/year), partnership structure, installation quotes, rent terms. Provided by farm owner directly.</div>
+      <div class="cred-note">Farm description, diesel breakdown (7,000 L/yr generators + 6,000 L/yr brooder heaters = 13,000 L total), partnership structure, installation quotes, rent terms. Provided by farm owner directly.</div>
     </div>
     <div class="source-item" style="margin-top:12px; background:#FFFDE7; padding:10px; border-radius:4px">
       <strong>Assumptions not independently verified (flagged throughout as <span class="src src-est">estimated</span>)</strong>
-      <div class="cred-note">Self-consumption ratio (40%), diesel reduction percentages (35% / 75%), system efficiency (80%), soiling loss (10%), battery replacement cost (placeholder ₨50 lakh). These are informed estimates used for illustration. Actual values should be confirmed with your installer before making financial decisions.</div>
+      <div class="cred-note">Self-consumption ratio (40%), diesel reduction percentages (35% / 75% of generator diesel only — brooder diesel excluded as non-saveable), system efficiency (80%), soiling loss (10%), battery replacement cost (placeholder ₨50 lakh). These are informed estimates used for illustration. Actual values should be confirmed with your installer before making financial decisions.</div>
     </div>
   </div>
 </details>
@@ -1267,6 +1300,10 @@
   const ANNUAL_KWH  = 93960;         // kWh/yr from grid [actual bill]
   const ANNUAL_BILL = 4884882;       // PKR/yr electricity [actual bill]
   const EFFECTIVE_RATE = ANNUAL_BILL / ANNUAL_KWH; // ~52 PKR/kWh
+
+  // Diesel split [owner's notes]
+  const DIESEL_GENERATOR = 7000;     // L/yr — generator backup (solar-saveable)
+  const DIESEL_BROODER   = 6000;     // L/yr — brooder heaters, winter nights (NOT solar-saveable)
 
   const COST_ONGRID    = 10000000;   // 1.00 crore PKR [installer quote]
   const COST_HYBRID_NB = 11700000;   // 1.17 crore PKR [installer quote]
@@ -1308,6 +1345,16 @@
     else if (id === 'i-diesel-red-battery') el.textContent = v + '%';
     else if (id === 'i-escalation') el.textContent = v + '%/yr';
     else if (id === 'i-battery-replacement') el.textContent = formatPKR(v);
+  }
+
+  function setScenario(rate, btn) {
+    const slider = document.getElementById('i-export-rate');
+    const display = document.getElementById('v-export-rate');
+    if (slider) slider.value = rate;
+    if (display) display.textContent = '₨' + rate;
+    document.querySelectorAll('.scenario-btn').forEach(b => b.classList.remove('active'));
+    if (btn) btn.classList.add('active');
+    calculate();
   }
 
   function calculate() {
